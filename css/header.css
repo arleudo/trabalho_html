@@ -1,0 +1,93 @@
+header {
+  background-color: var(--button-background-color);
+  height: 2rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  color: var(--button-text-color);
+  font-weight: 900;
+  font-size: 1.2rem;
+  transition: all 0.5s;
+}
+
+.header-container {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
+  padding: 2rem;
+}
+
+.menu-container {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-around;
+}
+
+li {
+  padding: 2rem;
+  transition: all 0.7s;
+}
+
+li:hover {
+  background-color: var(--button-hover-background-color);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 2rem;
+}
+
+.logo {
+  height: 60px;
+  width: 60px;
+  transition: all 0.5s;
+}
+
+.logo:hover {
+  cursor: pointer;
+  scale: 1.1;
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    padding: 2rem;
+    right: 0;
+    background-color: var(--button-background-color);
+    width: 100%;
+  }
+
+  .nav-list li {
+    text-align: center;
+    width: 100%;
+  }
+
+  .menu-container {
+    display: flex;
+    cursor: pointer;
+  }
+
+  .menu-toggle {
+    font-size: 2rem;
+    user-select: none;
+    transition: all 0.7s;
+  }
+
+  .menu-toggle:hover {
+    rotate: 90deg;
+  }
+
+  .menu-active .nav-list {
+    display: flex;
+  }
+}
