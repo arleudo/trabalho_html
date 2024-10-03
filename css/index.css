@@ -10,10 +10,17 @@
   --button-background-color: #d4af37;
   --button-text-color: #1e1e2f;
   --button-hover-background-color: #edbe48;
+  --active: #50904f;
+  --not-active: #a36a59;
 }
 
 * {
   font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--button-text-color);
 }
 
 body {
