@@ -24,14 +24,15 @@ a {
 }
 
 body {
+  overflow-x: hidden;
+  margin: 0;
+  margin-top: 10rem;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: Arial, sans-serif;
-  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  margin: 0;
 }
 
 input[type="text"],

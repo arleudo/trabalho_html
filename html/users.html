@@ -7,26 +7,26 @@
     <link rel="stylesheet" href="../css/index.css" />
     <link rel="stylesheet" href="../css/users.css" />
     <link rel="stylesheet" href="../css/header.css" />
+    <header>
+      <div class="header-container">
+        <div class="header-content">
+          <img src="../imgs/logo.svg" alt="Book" class="logo" />
+        </div>
+        <div class="header-content nav-container">
+          <ul class="nav-list">
+            <li>Home</li>
+            <a href="./users.html"><li>Usuários</li></a>
+            <li>Livros</li>
+            <li>Alugar</li>
+            <li>Devolver</li>
+          </ul>
+        </div>
+        <div class="header-content menu-container">
+          <span class="menu-toggle">&#9776;</span>
+        </div>
+      </div>
+    </header>
   </head>
-  <header>
-    <div class="header-container">
-      <div class="header-content">
-        <img src="../imgs/logo.svg" alt="Book" class="logo" />
-      </div>
-      <div class="header-content nav-container">
-        <ul class="nav-list">
-          <li>Home</li>
-          <a href="./users.html"><li>Usuários</li></a>
-          <li>Livros</li>
-          <li>Alugar</li>
-          <li>Devolver</li>
-        </ul>
-      </div>
-      <div class="header-content menu-container">
-        <span class="menu-toggle">&#9776;</span>
-      </div>
-    </div>
-  </header>
   <body>
     <div class="table-container">
       <table>
@@ -54,9 +54,23 @@
             <td data-label="Telefone">(21) 99876-5432</td>
             <td data-label="Ativo">Não</td>
           </tr>
-          <!-- Adicione mais linhas conforme necessário -->
+          <tr>
+            <td data-label="Nome">João Silva</td>
+            <td data-label="Email">joao@email.com</td>
+            <td data-label="CPF">123.456.789-00</td>
+            <td data-label="Telefone">(11) 98765-4321</td>
+            <td data-label="Ativo">Sim</td>
+          </tr>
+          <tr>
+            <td data-label="Nome">Maria Oliveira</td>
+            <td data-label="Email">maria@email.com</td>
+            <td data-label="CPF">987.654.321-00</td>
+            <td data-label="Telefone">(21) 99876-5432</td>
+            <td data-label="Ativo">Não</td>
+          </tr>
         </tbody>
       </table>
     </div>
+    <script src="../scripts/menu.js"></script>
   </body>
 </html>
