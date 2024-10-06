@@ -80,6 +80,22 @@
     </table>
   </div>
   <script src="../scripts/menu.js"></script>
+
+  <div id="dialog" class="dialog-overlay">
+    <div class="dialog-box">
+      <h2>Novo Usuário</h2>
+      <form id="addUserForm">
+        <input type="text" id="nome" name="nome" required placeholder="Nome" />
+        <input type="email" id="email" name="email" required placeholder="Email"/>
+        <input type="text" id="cpf" name="cpf" required placeholder="CPF"/>
+        <input type="tel" id="telefone" name="telefone" required placeholder="Telefone"/>
+
+        <button type="button" onclick="saveUser()">Salvar</button>
+      </form>
+    </div>
+  </div>
+
+
 </body>
 <footer>
   <button class="floattingButton" onclick="openDialog()">
