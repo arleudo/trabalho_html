@@ -26,6 +26,8 @@
 
 .card {
   display: flex;
+  flex-direction: column;
+  gap: 4rem;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
@@ -36,6 +38,10 @@
   color: var(--button-text-color);
   font-weight: bold;
   font-size: 2rem;
+    img{
+      width: 40%;
+      height: auto;
+  }
 }
 
 .card:hover {
