@@ -1,106 +1,99 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela de Usuários</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/users.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <header>
+      <div class="header-container">
+        <div class="header-content">
+          <img src="../imgs/logo.svg" alt="Book" class="logo" />
+        </div>
+        <div class="header-content nav-container">
+          <ul class="nav-list">
+            <a href="./main.html">
+              <li>Home</li>
+            </a>
+            <a href="./users.html">
+              <li>Usuários</li>
+            </a>
+            <a href="./books.html">
+              <li>Livros</li>
+            </a>
+            <li>Alugar</li>
+            <li>Devolver</li>
+          </ul>
+        </div>
+        <div class="header-content menu-container">
+          <span class="menu-toggle">&#9776;</span>
+        </div>
+      </div>
+    </header>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tabela de Usuários</title>
-  <link rel="stylesheet" href="../css/index.css" />
-  <link rel="stylesheet" href="../css/users.css" />
-  <link rel="stylesheet" href="../css/header.css" />
-  <header>
-    <div class="header-container">
-      <div class="header-content">
-        <img src="../imgs/logo.svg" alt="Book" class="logo" />
-      </div>
-      <div class="header-content nav-container">
-        <ul class="nav-list">
-          <a href="./main.html">
-            <li>Home</li>
-          </a>
-          <a href="./users.html">
-            <li>Usuários</li>
-          </a>
-          <a href="./books.html">
-            <li>Livros</li>
-          </a>
-          <li>Alugar</li>
-          <li>Devolver</li>
-        </ul>
-      </div>
-      <div class="header-content menu-container">
-        <span class="menu-toggle">&#9776;</span>
+  <body>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>Ativo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr></tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="../scripts/script.js"></script>
+
+    <div id="dialog" class="dialog-overlay">
+      <div class="dialog-box">
+        <h2>Novo Usuário</h2>
+        <form id="addUserForm">
+          <input
+            type="text"
+            id="input_name"
+            name="nome"
+            required
+            placeholder="Nome"
+          />
+          <input
+            type="email"
+            id="input_email"
+            name="email"
+            required
+            placeholder="Email"
+          />
+          <input
+            type="text"
+            id="input_cpf"
+            name="cpf"
+            required
+            placeholder="CPF"
+          />
+          <input
+            type="tel"
+            id="input_phone"
+            name="telefone"
+            required
+            placeholder="Telefone"
+          />
+
+          <button type="button" onclick="saveUser()">Salvar</button>
+        </form>
       </div>
     </div>
-  </header>
-</head>
-
-<body>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Email</th>
-          <th>CPF</th>
-          <th>Telefone</th>
-          <th>Ativo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Nome">João Silva</td>
-          <td data-label="Email">joao@email.com</td>
-          <td data-label="CPF">123.456.789-00</td>
-          <td data-label="Telefone">(11) 98765-4321</td>
-          <td data-label="Ativo"><div class="sim"></div></td>
-        </tr>
-        <tr>
-          <td data-label="Nome">Maria Oliveira</td>
-          <td data-label="Email">maria@email.com</td>
-          <td data-label="CPF">987.654.321-00</td>
-          <td data-label="Telefone">(21) 99876-5432</td>
-          <td data-label="Ativo"><div class="nao"></div></td>
-        </tr>
-        <tr>
-          <td data-label="Nome">João Silva</td>
-          <td data-label="Email">joao@email.com</td>
-          <td data-label="CPF">123.456.789-00</td>
-          <td data-label="Telefone">(11) 98765-4321</td>
-          <td data-label="Ativo"><div class="sim"></div></td>
-        </tr>
-        <tr>
-          <td data-label="Nome">Maria Oliveira</td>
-          <td data-label="Email">maria@email.com</td>
-          <td data-label="CPF">987.654.321-00</td>
-          <td data-label="Telefone">(21) 99876-5432</td>
-          <td data-label="Ativo"><div class="nao"></div></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <script src="../scripts/menu.js"></script>
-
-  <div id="dialog" class="dialog-overlay">
-    <div class="dialog-box">
-      <h2>Novo Usuário</h2>
-      <form id="addUserForm">
-        <input type="text" id="nome" name="nome" required placeholder="Nome" />
-        <input type="email" id="email" name="email" required placeholder="Email"/>
-        <input type="text" id="cpf" name="cpf" required placeholder="CPF"/>
-        <input type="tel" id="telefone" name="telefone" required placeholder="Telefone"/>
-
-        <button type="button" onclick="saveUser()">Salvar</button>
-      </form>
-    </div>
-  </div>
-
-
-</body>
-<footer>
-  <button class="floattingButton" onclick="openDialog()">
-    <img src="../imgs/plus.svg" alt="" height="25px" width="25px">
-  </button>
-</footer>
-
+  </body>
+  <footer>
+    <button class="floattingButton" onclick="openDialog()">
+      <img src="../imgs/plus.svg" alt="" height="25px" width="25px" />
+    </button>
+  </footer>
 </html>
