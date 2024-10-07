@@ -1,10 +1,34 @@
 [
-  {
-    "id": 1,
-    "name": "Alice Pereira",
-    "email": "alice.pereira@example.com",
-    "cpf": "123.456.789-00",
-    "phone": "(11) 91234-5678",
-    "active": true
-  }
+    {
+        "id": 0,
+        "name": "Antonio Arleudo da Costa",
+        "email": "antonioarleudo@gmail.com",
+        "cpf": "777.120.803-72",
+        "phone": "(85) 99762-5570",
+        "active": true
+    },
+    {
+        "id": 1,
+        "name": "Eugenia de Queiroz Nogueira",
+        "email": "antonioarleudo@gmail.com",
+        "cpf": "777.120.803-72",
+        "phone": "(85) 99762-5570",
+        "active": true
+    },
+    {
+        "id": 2,
+        "name": "ewrwerwer",
+        "email": "acosta15@lenovo.com",
+        "cpf": "777.120.803-72",
+        "phone": "(85) 99762-5570",
+        "active": true
+    },
+    {
+        "id": 3,
+        "name": "ewrwerwe",
+        "email": "ewrwerwer",
+        "cpf": "ewrwer",
+        "phone": "werwerwer",
+        "active": true
+    }
 ]

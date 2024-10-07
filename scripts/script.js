@@ -1,5 +1,9 @@
 let users = [];
 
+document.addEventListener("DOMContentLoaded", function () {
+  loadUsers();
+});
+
 document.querySelector(".menu-toggle").addEventListener("click", function () {
   document.querySelector(".nav-container").classList.toggle("menu-active");
 });
@@ -21,9 +25,27 @@ function saveUser() {
   let phone = document.getElementById("input_phone").value;
   let user = { id, name, email, cpf, phone, active: true };
 
-  users.push(user);
-  updateTable();
-  console.log(users);
+  fetch("saveUser.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        users.push(user);
+        updateTable();
+        console.log("Usuário salvo com sucesso:", data);
+      } else {
+        console.error("Erro ao salvar usuário:", data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Erro ao salvar o usuário:", error);
+    });
+
   closeDialog();
   cleanUserDialog();
 }
@@ -54,4 +76,16 @@ function cleanUserDialog() {
   document.getElementById("input_email").value = "";
   document.getElementById("input_cpf").value = "";
   document.getElementById("input_phone").value = "";
+}
+
+function loadUsers() {
+  fetch("loadUsers.php")
+    .then((response) => response.json())
+    .then((data) => {
+      users = data; // Atualiza o array de usuários com os dados do servidor
+      updateTable(); // Atualiza a tabela com os usuários carregados
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar os usuários:", error);
+    });
 }
