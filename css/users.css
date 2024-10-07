@@ -107,21 +107,25 @@ table tr:last-child td:last-child {
 }
 
 .dialog-box {
+  display: flex;
+  flex-direction: column;
   background-color: var(--form-background-color);
   padding: 2rem;
   border-radius: 8px;
   width: 500px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-
-  button{
-    width: 100%;
-  }
-
-  input{
-    width: 94%;
-  }
 }
 
 .dialog-box h2 {
   margin-bottom: 1.5rem;
+}
+
+.buttons_dialog {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.buttons_dialog button {
+  width: 50%;
 }

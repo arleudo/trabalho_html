@@ -1,5 +1,5 @@
 <?php
-$file = '../data/users.json';
+$file = '../../data/users.json';
 
 if (file_exists($file)) {
     $data = file_get_contents($file);

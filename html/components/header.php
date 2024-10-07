@@ -1,17 +1,17 @@
 <header>
     <div class="header-container">
         <div class="header-content">
-            <img src="../imgs/logo.svg" alt="Book" class="logo" />
+            <img src="../../imgs/logo.svg" alt="Book" class="logo" />
         </div>
         <div class="header-content nav-container">
             <ul class="nav-list">
-                <a href="./main.php">
+                <a href="../screens/main.php">
                     <li>Home</li>
                 </a>
-                <a href="./users.php">
+                <a href="../screens/users.php">
                     <li>Usuários</li>
                 </a>
-                <a href="./books.php">
+                <a href="../screens/books.php">
                     <li>Livros</li>
                 </a>
                 <li>Alugar</li>

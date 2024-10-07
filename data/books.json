@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "name": "It a Coisa",
+    "author": "Stephen King",
+    "sinopse": "Na cidade de Darry um grupo de jovens luta ocntra um mal antigo",
+    "theme": "Terror",
+    "rent": true
+  },
+  {
+    "id": 0,
+    "name": "O Senhor dos An\u00e9is",
+    "author": "J.R.R. Tolkien",
+    "sinopse": "Uma batalha \u00e9pica do bem contra o mal numa terra distante",
+    "theme": "Fantasia",
+    "rent": true
+  },
+  {
+    "id": 2,
+    "name": "rewrwer",
+    "author": "ewrwer",
+    "sinopse": "werwer",
+    "theme": "werwer",
+    "rent": true
+  },
+  {
+    "id": 3,
+    "name": "werwer",
+    "author": "werwer",
+    "sinopse": "ewrwer",
+    "theme": "werwer",
+    "rent": false
+  },
+  {
+    "id": 4,
+    "name": "werwer",
+    "author": "werwer",
+    "sinopse": "ewrwer",
+    "theme": "werwer",
+    "rent": false
+  },
+  {
+    "id": 5,
+    "name": "Vingadores Ultimato",
+    "author": "Irm\u00e3os Russo",
+    "sinopse": "Batalhe ao lado dos maiores her\u00f3is da marvel",
+    "theme": "Aventura",
+    "rent": true
+  }
+]
