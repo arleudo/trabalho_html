@@ -8,10 +8,11 @@ function saveBook() {
   const id = books.length;
 
   let name = document.getElementById("input_name").value;
+  let url = document.getElementById("input_url").value;
   let author = document.getElementById("input_author").value;
   let sinopse = document.getElementById("input_sinopse").value;
   let theme = document.getElementById("input_theme").value;
-  let book = { id, name, author, sinopse, theme, rent: true };
+  let book = { id, name, url, author, sinopse, theme, rent: true };
 
   fetch("../actions/saveBook.php", {
     method: "POST",
@@ -74,6 +75,7 @@ function loadBooks() {
 function cleanBookDialog() {
   document.getElementById("input_name").value = "";
   document.getElementById("input_author").value = "";
+  document.getElementById("input_url").value = "";
   document.getElementById("input_sinopse").value = "";
   document.getElementById("input_theme").value = "";
 }

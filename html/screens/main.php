@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../../css/index.css" />
-  <link rel="stylesheet" href="../../css/header.css" />
   <link rel="stylesheet" href="../../css/main.css" />
 </head>
 <?php include '../components/header.php'; ?>
@@ -27,7 +26,7 @@
         <span>Livros</span>
       </div>
     </a>
-    <a href="./users.php">
+    <a href="./rent.php">
       <div class="card">
         <img src="../../imgs/rent.png" alt="" />
         <span>Alugar</span>

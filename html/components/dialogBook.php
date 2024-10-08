@@ -3,6 +3,7 @@
         <h2>Novo Livro</h2>
         <form id="addBookForm">
             <input type="text" id="input_name" name="nome" required placeholder="Nome" />
+            <input type="text" id="input_url" name="url" required placeholder="URL para a imagem" />
             <input type="text" id="input_author" name="author" required placeholder="Autor" />
             <input type="text" id="input_sinopse" name="sinopse" required placeholder="Sinopse" />
             <input type="text" id="input_theme" name="theme" required placeholder="Tema" />

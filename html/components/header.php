@@ -1,25 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/header.css">
+</head>
 <header>
     <div class="header-container">
-        <div class="header-content">
-            <img src="../../imgs/logo.svg" alt="Book" class="logo" />
-        </div>
-        <div class="header-content nav-container">
+        <img src="../../imgs/logo.svg" alt="Book" class="logo">
+
+
+        <nav class="nav-container">
             <ul class="nav-list">
-                <a href="../screens/main.php">
-                    <li>Home</li>
-                </a>
-                <a href="../screens/users.php">
-                    <li>Usuários</li>
-                </a>
-                <a href="../screens/books.php">
-                    <li>Livros</li>
-                </a>
-                <li>Alugar</li>
+                <li><a href="../screens/main.php">Home</a></li>
+                <li><a href="../screens/users.php">Usuários</a></li>
+                <li><a href="../screens/books.php">Livros</a></li>
+                <li><a href="../screens/rent.php">Alugar</a></li>
                 <li>Devolver</li>
             </ul>
-        </div>
-        <div class="header-content menu-container">
+        </nav>
+
+        <div class="menu-container">
             <span class="menu-toggle">&#9776;</span>
         </div>
+        <img src="../../imgs/logout.png" class="logo">
     </div>
 </header>
+
+</html>

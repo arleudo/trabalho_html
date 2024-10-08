@@ -1,50 +1,83 @@
 [
   {
     "id": 0,
-    "name": "It a Coisa",
-    "author": "Stephen King",
-    "sinopse": "Na cidade de Darry um grupo de jovens luta ocntra um mal antigo",
-    "theme": "Terror",
+    "name": "A sociedade do Anel",
+    "author": "J. R. R. Tolkien",
+    "sinopse": "Uma luta \u00e9pica contra o mal numa terra long\u00edncua",
+    "theme": "Fantasia",
+    "url": "https://m.media-amazon.com/images/I/71ZLavBjpRL._AC_UF1000,1000_QL80_.jpg",
     "rent": true
   },
   {
-    "id": 0,
-    "name": "O Senhor dos An\u00e9is",
-    "author": "J.R.R. Tolkien",
-    "sinopse": "Uma batalha \u00e9pica do bem contra o mal numa terra distante",
-    "theme": "Fantasia",
+    "id": 1,
+    "name": "A espada selvagem de Conan",
+    "author": "Robert E. Howard",
+    "sinopse": "Acompanhe o cim\u00e9rio desbravando a era hiboriana",
+    "theme": "Espada e Feiti\u00e7aria",
+    "url": "https://m.media-amazon.com/images/I/51dTDo7qe4L._AC_UF1000,1000_QL80_.jpg",
     "rent": true
   },
   {
     "id": 2,
-    "name": "rewrwer",
-    "author": "ewrwer",
-    "sinopse": "werwer",
-    "theme": "werwer",
+    "name": "As Cr\u00f4nicas de Gelo e Fogo",
+    "url": "https://dcdn.mitiendanube.com/stores/004/330/389/products/o-mundo-de-gelo-e-fogo-c73dc1e5b4e4b0c2b417159749821471-640-0.jpg",
+    "author": "George R. Martin",
+    "sinopse": "Intrigas pol\u00edticas assolam uma regi\u00e3o controlada por uma fam\u00edlia de descendentes de drag\u00f5es",
+    "theme": "Fantasia",
     "rent": true
   },
   {
     "id": 3,
-    "name": "werwer",
-    "author": "werwer",
-    "sinopse": "ewrwer",
-    "theme": "werwer",
-    "rent": false
+    "name": "A sociedade do Anel",
+    "author": "J. R. R. Tolkien",
+    "sinopse": "Uma luta \u00e9pica contra o mal numa terra long\u00edncua",
+    "theme": "Fantasia",
+    "url": "https://m.media-amazon.com/images/I/71ZLavBjpRL._AC_UF1000,1000_QL80_.jpg",
+    "rent": true
   },
   {
     "id": 4,
-    "name": "werwer",
-    "author": "werwer",
-    "sinopse": "ewrwer",
-    "theme": "werwer",
-    "rent": false
+    "name": "A espada selvagem de Conan",
+    "author": "Robert E. Howard",
+    "sinopse": "Acompanhe o cim\u00e9rio desbravando a era hiboriana",
+    "theme": "Espada e Feiti\u00e7aria",
+    "url": "https://m.media-amazon.com/images/I/51dTDo7qe4L._AC_UF1000,1000_QL80_.jpg",
+    "rent": true
   },
   {
     "id": 5,
-    "name": "Vingadores Ultimato",
-    "author": "Irm\u00e3os Russo",
-    "sinopse": "Batalhe ao lado dos maiores her\u00f3is da marvel",
-    "theme": "Aventura",
+    "name": "As Cr\u00f4nicas de Gelo e Fogo",
+    "url": "https://dcdn.mitiendanube.com/stores/004/330/389/products/o-mundo-de-gelo-e-fogo-c73dc1e5b4e4b0c2b417159749821471-640-0.jpg",
+    "author": "George R. Martin",
+    "sinopse": "Intrigas pol\u00edticas assolam uma regi\u00e3o controlada por uma fam\u00edlia de descendentes de drag\u00f5es",
+    "theme": "Fantasia",
+    "rent": true
+  },
+  {
+    "id": 6,
+    "name": "A sociedade do Anel",
+    "author": "J. R. R. Tolkien",
+    "sinopse": "Uma luta \u00e9pica contra o mal numa terra long\u00edncua",
+    "theme": "Fantasia",
+    "url": "https://m.media-amazon.com/images/I/71ZLavBjpRL._AC_UF1000,1000_QL80_.jpg",
+    "rent": true
+  },
+  {
+    "id": 7,
+    "name": "A espada selvagem de Conan",
+    "author": "Robert E. Howard",
+    "sinopse": "Acompanhe o cim\u00e9rio desbravando a era hiboriana",
+    "theme": "Espada e Feiti\u00e7aria",
+    "url": "https://m.media-amazon.com/images/I/51dTDo7qe4L._AC_UF1000,1000_QL80_.jpg",
+    "rent": true
+  },
+  {
+    "id": 8,
+    "name": "As Cr\u00f4nicas de Gelo e Fogo",
+    "url": "https://dcdn.mitiendanube.com/stores/004/330/389/products/o-mundo-de-gelo-e-fogo-c73dc1e5b4e4b0c2b417159749821471-640-0.jpg",
+    "author": "George R. Martin",
+    "sinopse": "Intrigas pol\u00edticas assolam uma regi\u00e3o controlada por uma fam\u00edlia de descendentes de drag\u00f5es",
+    "theme": "Fantasia",
     "rent": true
   }
 ]

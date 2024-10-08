@@ -7,7 +7,6 @@
   <title>Tabela de Livros</title>
   <link rel="stylesheet" href="../../css/index.css" />
   <link rel="stylesheet" href="../../css/users.css" />
-  <link rel="stylesheet" href="../../css/header.css" />
 </head>
 <?php include '../components/header.php'; ?>
 

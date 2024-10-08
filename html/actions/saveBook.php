@@ -4,7 +4,7 @@ $data = file_get_contents("php://input");
 
 $book = json_decode($data, true);
 
-if ($book && isset($book['name'], $book['author'], $book['sinopse'], $book['rent'])) {
+if ($book && isset($book['name'], $book['author'], $book['url'], $book['sinopse'], $book['rent'])) {
     if (file_exists($file)) {
         $currentData = json_decode(file_get_contents($file), associative: true);
         if (!is_array($currentData)) {

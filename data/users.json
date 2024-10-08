@@ -14,37 +14,5 @@
         "cpf": "777.120.803-72",
         "phone": "(85) 99762-5570",
         "active": true
-    },
-    {
-        "id": 2,
-        "name": "ewrwerwer",
-        "email": "acosta15@lenovo.com",
-        "cpf": "777.120.803-72",
-        "phone": "(85) 99762-5570",
-        "active": true
-    },
-    {
-        "id": 3,
-        "name": "ewrwerwe",
-        "email": "ewrwerwer",
-        "cpf": "ewrwer",
-        "phone": "werwerwer",
-        "active": true
-    },
-    {
-        "id": 4,
-        "name": "Gumercinda",
-        "email": "ejrfhjhf@asjdfhjasdh.com",
-        "cpf": "854784357",
-        "phone": "jhfjhgfdg",
-        "active": true
-    },
-    {
-        "id": 5,
-        "name": "Telma",
-        "email": "telma@gmail.com",
-        "cpf": "8558347587",
-        "phone": "437564375",
-        "active": true
     }
 ]
