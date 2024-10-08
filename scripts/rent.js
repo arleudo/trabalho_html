@@ -16,11 +16,14 @@ function updateBookCards() {
 
       card.innerHTML = `
       <img src="${book.url}">
-      <p>${book.name}</p>
-      <p>${book.author}</p>
-      <p>${book.theme}</p>
-      <p>${book.sinopse}</p>
-      `;
+      <div class="card-content">
+          <p><strong>${book.name}</strong></p>
+          <p>${book.author}</p>
+          <p>${book.theme}</p>
+          <p>${book.sinopse}</p>
+      </div>
+      <button>Adicionar</button>
+    `;
       rentContainer.appendChild(card);
     }
   });
