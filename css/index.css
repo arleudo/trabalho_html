@@ -28,7 +28,6 @@ body {
   margin-top: 10rem;
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: center;

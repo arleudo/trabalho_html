@@ -10,7 +10,7 @@
 <header>
     <div class="header-container">
         <img src="../../imgs/logo.svg" alt="Book" class="logo">
-
+        <img src="../../imgs/logout.png" class="logout" onclick="logout()">
 
         <nav class="nav-container">
             <ul class="nav-list">
@@ -21,12 +21,11 @@
                 <li>Devolver</li>
             </ul>
         </nav>
-
         <div class="menu-container">
             <span class="menu-toggle">&#9776;</span>
         </div>
-        <img src="../../imgs/logout.png" class="logo">
     </div>
 </header>
+<script src="../../scripts/header.js"></script>
 
 </html>
