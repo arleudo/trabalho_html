@@ -12,14 +12,16 @@
 
 <body>
   <div class="login-container">
-    <form class="login-form" action="main.php">
+    <div class="login-form">
       <img src="../../imgs/book.svg" alt="Book" class="book" />
       <h2>Login</h2>
-      <input type="text" placeholder="Email" name="email" required />
-      <input type="password" placeholder="Senha" name="password" required />
-      <button type="submit">Entrar</button>
-    </form>
+      <input type="text" placeholder="Email" name="email" id="field_email" required />
+      <input type="password" placeholder="Senha" name="password" id="field_password" required />
+      <button onclick="validLogin()">Entrar</button>
+    </div>
   </div>
+
+  <script src="../../scripts/script.js"></script>
 </body>
 
 </html>

@@ -2,6 +2,7 @@ header {
   background-color: var(--button-background-color);
   width: 100%;
   position: absolute;
+  display: flex;
   top: 0;
   left: 0;
   padding: 0 4rem;
@@ -13,7 +14,7 @@ header {
 
 .header-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   height: 80px;
   width: 100%;
@@ -38,7 +39,7 @@ header {
 }
 
 .nav-list li {
-  padding: 0.5rem;
+  padding: 1.7rem;
 }
 
 .nav-list li a {
@@ -49,6 +50,7 @@ header {
 .nav-list li:hover {
   background-color: var(--button-hover-background-color);
   border-radius: 10px;
+  padding: 1.7rem;
 }
 
 .menu-container {
