@@ -34,6 +34,14 @@ header {
   right: 2rem;
 }
 
+.bag {
+  height: 3rem;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  right: 8rem;
+}
+
 .nav-container {
   flex: 1;
   display: flex;
