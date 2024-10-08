@@ -9,18 +9,20 @@ function updateBookCards() {
   rentContainer.innerHTML = "";
 
   books.forEach((book) => {
-    const card = document.createElement("div");
-    card.classList.add("card-book");
+    if (book.rent) {
+      const card = document.createElement("div");
+      card.classList.add("card-book");
+      card.setAttribute("onclick", "rentBook('" + book.id + "')");
 
-    card.innerHTML = `
+      card.innerHTML = `
       <img src="${book.url}">
       <p>${book.name}</p>
       <p>${book.author}</p>
       <p>${book.theme}</p>
       <p>${book.sinopse}</p>
-    `;
-
-    rentContainer.appendChild(card);
+      `;
+      rentContainer.appendChild(card);
+    }
   });
 }
 
@@ -34,4 +36,8 @@ function loadCards() {
     .catch((error) => {
       console.error("Erro ao carregar os livros:", error);
     });
+}
+
+function rentBook(name) {
+  console.log("vai alugar" + name);
 }

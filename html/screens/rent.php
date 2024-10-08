@@ -13,8 +13,6 @@
 
 <body>
     <div class="rent-container">
-        <div class="card-book">
-        </div>
     </div>
     <script src="../../scripts/rent.js"></script>
 </body>
