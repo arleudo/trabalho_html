@@ -1,4 +1,5 @@
 let users = [];
+let editing = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
@@ -9,24 +10,28 @@ function saveUser() {
   let email = document.getElementById("input_email").value;
   let cpf = document.getElementById("input_cpf").value;
   let phone = document.getElementById("input_phone").value;
-  let user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
-
-  fetch("../actions/saveUser.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Mudei para application/json
-    },
-    body: JSON.stringify(user),
-  })
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((data) => {
-      users.push(user);
-      updateTable();
-      console.log(data);
+  let user = {};
+  if (!editing) {
+    user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
+  } else {
+    user = { id, name, email, cpf, phone, active: 1 };
+    fetch("../actions/saveUser.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json", // Mudei para application/json
+      },
+      body: JSON.stringify(user),
     })
-    .catch((error) => {
-      console.error("Erro:", error);
-    });
+      .then((response) => response.json()) // Converte a resposta para JSON
+      .then((data) => {
+        users.push(user);
+        updateTable();
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Erro:", error);
+      });
+  }
 
   closeDialog();
   cleanUserDialog();
@@ -83,6 +88,7 @@ function cleanUserDialog() {
   document.getElementById("input_email").value = "";
   document.getElementById("input_cpf").value = "";
   document.getElementById("input_phone").value = "";
+  editing = false;
 }
 
 function rentBook(id) {
@@ -90,7 +96,18 @@ function rentBook(id) {
 }
 
 function editUser(id) {
-  console.log("Editando o usuario: " + id);
+  console.log(id);
+  console.log(users);
+  const user = users.find((u) => u.id === id + "");
+  console.log(user);
+  if (user) {
+    document.getElementById("input_name").value = user.name;
+    document.getElementById("input_email").value = user.email;
+    document.getElementById("input_cpf").value = user.cpf;
+    document.getElementById("input_phone").value = user.phone;
+    editing = true;
+    openDialog();
+  }
 }
 
 function deleteUser(id) {
