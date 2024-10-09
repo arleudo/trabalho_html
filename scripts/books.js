@@ -98,5 +98,19 @@ function editBook(id) {
 }
 
 function deleteBook(id) {
-  console.log("Deletando o livro: " + id);
+  fetch("../actions/deleteBook.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Mudei para application/json
+    },
+    body: JSON.stringify({ id }),
+  })
+    .then((response) => response.json()) // Converte a resposta para JSON
+    .then((_) => {
+      books = books.filter((book) => book.id != id);
+      updateTableBooks();
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+    });
 }
