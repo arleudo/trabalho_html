@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function saveBook() {
-  const id = books.length;
+  const id = books.length + 1;
 
   let name = document.getElementById("input_name").value;
   let url = document.getElementById("input_url").value;
@@ -17,22 +17,18 @@ function saveBook() {
   fetch("../actions/saveBook.php", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", // Mudei para application/json
     },
     body: JSON.stringify(book),
   })
-    .then((response) => response.json())
+    .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
-      if (data.success) {
-        books.push(book);
-        updateTableBooks();
-        console.log("Livro salvo com sucesso:", data);
-      } else {
-        console.error("Erro ao salvar livro:", data.error);
-      }
+      books.push(book);
+      updateTableBooks();
+      console.log(data);
     })
     .catch((error) => {
-      console.error("Erro ao salvar o livro:", error);
+      console.error("Erro:", error);
     });
 
   closeDialog();

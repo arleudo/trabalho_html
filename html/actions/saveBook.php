@@ -1,26 +1,49 @@
 <?php
-$file = '../../data/books.json';
-$data = file_get_contents("php://input");
+// Configurações do banco de dados
+$host = 'localhost'; // Endereço do servidor MySQL
+$dbname = 'database'; // Nome do banco de dados
+$username = 'root'; // Usuário do banco de dados
+$password = 'admin'; // Senha do banco de dados
 
-$book = json_decode($data, true);
+try {
+    // Conecta ao banco de dados
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Define o modo de erro do PDO para exceções
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($book && isset($book['name'], $book['author'], $book['url'], $book['sinopse'], $book['rent'])) {
-    if (file_exists($file)) {
-        $currentData = json_decode(file_get_contents($file), associative: true);
-        if (!is_array($currentData)) {
-            $currentData = [];
-        }
-    } else {
-        $currentData = [];
-    }
+    // Verifica se o formulário foi enviado
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    $currentData[] = $book;
+    // Obtém os dados do objeto decodificado
+    $id = $data['id'];
+    $name = $data['name'];
+    $author = $data['author'];
+    $sinopse = $data['sinopse'];
+    $theme = $data['theme'];
+    $url = $data['url'];
+    $rent = $data['rent'];
 
-    if (file_put_contents($file, json_encode($currentData, JSON_PRETTY_PRINT))) {
-        echo json_encode(["success" => true, "message" => "Livro salvo com sucesso."]);
-    } else {
-        echo json_encode(["success" => false, "error" => "Erro ao salvar o livro."]);
-    }
-} else {
-    echo json_encode(["success" => false, "error" => "Dados inválidos."]);
+    // Prepara a consulta SQL
+    $stmt = $pdo->prepare("INSERT INTO book (id, name, author, sinopse, theme, url, rent ) VALUES (:id, :name, :author, :sinopse, :theme, :url, :rent)");
+
+    // Liga os parâmetros
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':author', $author);
+    $stmt->bindParam(':sinopse', $sinopse);
+    $stmt->bindParam(':theme', $theme);
+    $stmt->bindParam(':url', $url);
+    $stmt->bindParam(':rent', $rent);
+
+    // Executa a consulta
+    $stmt->execute();
+
+    echo json_encode(["message" => "Livro cadastrado com sucesso!"]);
+
+
+} catch (PDOException $e) {
+    echo json_encode(["error" => $e]);
 }
+
+// Fecha a conexão
+$pdo = null;
