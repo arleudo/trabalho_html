@@ -21,6 +21,7 @@
           <th>Sinopse</th>
           <th>Tema</th>
           <th>Disponível</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody id="table_books">

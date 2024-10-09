@@ -50,6 +50,19 @@ function updateTableBooks() {
       <td data-label="Disponível"><div class="${
         book.rent ? "sim" : "nao"
       }"></div></td>
+      <td data-label="Ações">
+        <div class="actions">
+          <div class="button-rent" onclick="editBook(${book.id})">
+            <img src="../../imgs/pencil.svg">
+          </div>
+          <div class="button-rent" onclick="deleteBook(${book.id})">
+            <img src="../../imgs/trash.svg">
+          </div>  
+          <div class="button-rent" onclick="rentBook(${book.id})">
+            <img src="../../imgs/bag.svg">
+          </div>
+        </div
+      </td>
     `;
 
     tableBody.appendChild(row);
@@ -74,4 +87,16 @@ function cleanBookDialog() {
   document.getElementById("input_url").value = "";
   document.getElementById("input_sinopse").value = "";
   document.getElementById("input_theme").value = "";
+}
+
+function rentBook(id) {
+  console.log("Alugando o livro: " + id);
+}
+
+function editBook(id) {
+  console.log("Editando o livro: " + id);
+}
+
+function deleteBook(id) {
+  console.log("Deletando o livro: " + id);
 }

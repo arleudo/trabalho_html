@@ -21,6 +21,7 @@
           <th>CPF</th>
           <th>Telefone</th>
           <th>Ativo</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody id="table_users">

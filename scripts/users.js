@@ -47,6 +47,19 @@ function updateTable() {
       <td data-label="Ativo"><div class="${
         user.active ? "sim" : "nao"
       }"></div></td>
+      <td data-label="Ações">
+      <div class="actions">
+        <div class="button-rent" onclick="editUser(${user.id})">
+          <img src="../../imgs/pencil.svg">
+        </div>
+        <div class="button-rent" onclick="deleteUser(${user.id})">
+          <img src="../../imgs/trash.svg">
+        </div>  
+        <div class="button-rent" onclick="rentBook(${user.id})">
+          <img src="../../imgs/bag.svg">
+        </div>
+      </div
+      </td>
     `;
 
     tableBody.appendChild(row);
@@ -70,4 +83,16 @@ function cleanUserDialog() {
   document.getElementById("input_email").value = "";
   document.getElementById("input_cpf").value = "";
   document.getElementById("input_phone").value = "";
+}
+
+function rentBook(id) {
+  console.log("Alugando livro para  o usuario: " + id);
+}
+
+function editUser(id) {
+  console.log("Editando o usuario: " + id);
+}
+
+function deleteUser(id) {
+  console.log("Deletando o usuario: " + id);
 }

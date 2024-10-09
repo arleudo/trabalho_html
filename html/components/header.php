@@ -11,7 +11,7 @@
     <div class="header-container">
         <img src="../../imgs/logo.svg" alt="Book" class="logo">
         <img src="../../imgs/logout.png" class="logout" onclick="logout()">
-        <img src="../../imgs/bag.png" class="bag" onclick="logout()">
+        <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
 
         <nav class="nav-container">
             <ul class="nav-list">
