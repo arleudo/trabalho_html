@@ -5,33 +5,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function saveUser() {
-  const id = users.length;
-
   let name = document.getElementById("input_name").value;
   let email = document.getElementById("input_email").value;
   let cpf = document.getElementById("input_cpf").value;
   let phone = document.getElementById("input_phone").value;
-  let user = { id, name, email, cpf, phone, active: true };
+  let user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
 
   fetch("../actions/saveUser.php", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", // Mudei para application/json
     },
     body: JSON.stringify(user),
   })
-    .then((response) => response.json())
+    .then((response) => response.json()) // Converte a resposta para JSON
     .then((data) => {
-      if (data.success) {
-        users.push(user);
-        updateTable();
-        console.log("Usuário salvo com sucesso:", data);
-      } else {
-        console.error("Erro ao salvar usuário:", data.error);
-      }
+      users.push(user);
+      updateTable();
+      console.log(data);
     })
     .catch((error) => {
-      console.error("Erro ao salvar o usuário:", error);
+      console.error("Erro:", error);
     });
 
   closeDialog();

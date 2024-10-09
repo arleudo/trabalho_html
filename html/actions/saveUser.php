@@ -1,26 +1,47 @@
 <?php
-$file = '../../data/users.json';
+// Configurações do banco de dados
+$host = 'localhost'; // Endereço do servidor MySQL
+$dbname = 'database'; // Nome do banco de dados
+$username = 'root'; // Usuário do banco de dados
+$password = 'admin'; // Senha do banco de dados
 
-$data = file_get_contents("php://input");
-$user = json_decode($data, true);
+try {
+    // Conecta ao banco de dados
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Define o modo de erro do PDO para exceções
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if ($user && isset($user['name'], $user['email'], $user['cpf'], $user['phone'])) {
-    if (file_exists($file)) {
-        $currentData = json_decode(file_get_contents($file), true);
-        if (!is_array($currentData)) {
-            $currentData = [];
-        }
-    } else {
-        $currentData = [];
-    }
+    // Verifica se o formulário foi enviado
+    $data = json_decode(file_get_contents("php://input"), true);
 
-    $currentData[] = $user;
+    // Obtém os dados do objeto decodificado
+    $id = $data['id'];
+    $name = $data['name'];
+    $email = $data['email'];
+    $cpf = $data['cpf'];
+    $phone = $data['phone'];
+    $active = $data['active'];
 
-    if (file_put_contents($file, json_encode($currentData, JSON_PRETTY_PRINT))) {
-        echo json_encode(["success" => true, "message" => "Usuário salvo com sucesso."]);
-    } else {
-        echo json_encode(["success" => false, "error" => "Erro ao salvar o usuário."]);
-    }
-} else {
-    echo json_encode(["success" => false, "error" => "Dados inválidos."]);
+    // Prepara a consulta SQL
+    $stmt = $pdo->prepare("INSERT INTO user (id, name, email, cpf, phone, active ) VALUES (:id, :name, :email, :cpf, :phone, :active)");
+
+    // Liga os parâmetros
+    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':cpf', $cpf);
+    $stmt->bindParam(':phone', $phone);
+    $stmt->bindParam(':active', $active);
+
+    // Executa a consulta
+    $stmt->execute();
+
+    echo json_encode(["message" => "Usuário cadastrado com sucesso!"]);
+
+
+} catch (PDOException $e) {
+    echo json_encode(["error" => $e]);
 }
+
+// Fecha a conexão
+$pdo = null;
