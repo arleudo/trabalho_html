@@ -1,11 +1,24 @@
 let users = [];
 let editing = false;
+let user_ = {};
 
 document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
 });
 
-function saveUser() {
+async function realizeFetch(action, data) {
+  const resp = await fetch(action, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return resp.json();
+}
+
+async function saveUser() {
   let name = document.getElementById("input_name").value;
   let email = document.getElementById("input_email").value;
   let cpf = document.getElementById("input_cpf").value;
@@ -13,24 +26,20 @@ function saveUser() {
   let user = {};
   if (!editing) {
     user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
+    const resp = await realizeFetch("../actions/saveUser.php", user);
+    if (resp) {
+      users.push(user);
+      updateTable();
+    }
   } else {
-    user = { id, name, email, cpf, phone, active: 1 };
-    fetch("../actions/saveUser.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // Mudei para application/json
-      },
-      body: JSON.stringify(user),
-    })
-      .then((response) => response.json()) // Converte a resposta para JSON
-      .then((data) => {
-        users.push(user);
-        updateTable();
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Erro:", error);
-      });
+    user_.name = name;
+    user_.email = email;
+    user_.cpf = cpf;
+    user_.phone = phone;
+    const resp = await realizeFetch("../actions/updateUser.php", user_);
+    if (resp) {
+      updateTable();
+    }
   }
 
   closeDialog();
@@ -96,15 +105,12 @@ function rentBook(id) {
 }
 
 function editUser(id) {
-  console.log(id);
-  console.log(users);
-  const user = users.find((u) => u.id === id + "");
-  console.log(user);
-  if (user) {
-    document.getElementById("input_name").value = user.name;
-    document.getElementById("input_email").value = user.email;
-    document.getElementById("input_cpf").value = user.cpf;
-    document.getElementById("input_phone").value = user.phone;
+  user_ = users.find((u) => u.id == id);
+  if (user_) {
+    document.getElementById("input_name").value = user_.name;
+    document.getElementById("input_email").value = user_.email;
+    document.getElementById("input_cpf").value = user_.cpf;
+    document.getElementById("input_phone").value = user_.phone;
     editing = true;
     openDialog();
   }
