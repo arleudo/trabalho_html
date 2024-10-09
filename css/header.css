@@ -8,7 +8,6 @@ header {
   padding: 0;
   color: var(--button-text-color);
   font-weight: bold;
-  transition: all 0.5s;
 }
 
 .header-container {
@@ -17,6 +16,7 @@ header {
   align-items: center;
   height: 80px;
   width: 100%;
+  transition: all 0.7s;
 }
 
 .logo {
@@ -52,6 +52,7 @@ header {
   display: flex;
   list-style: none;
   gap: 1rem;
+  transition: all 0.5s;
 }
 
 .nav-list li {
