@@ -48,17 +48,17 @@ function updateTable() {
         user.active ? "sim" : "nao"
       }"></div></td>
       <td data-label="Ações">
-      <div class="actions">
-        <div class="button-rent" onclick="editUser(${user.id})">
-          <img src="../../imgs/pencil.svg">
-        </div>
-        <div class="button-rent" onclick="deleteUser(${user.id})">
-          <img src="../../imgs/trash.svg">
-        </div>  
-        <div class="button-rent" onclick="rentBook(${user.id})">
-          <img src="../../imgs/bag.svg">
-        </div>
-      </div
+        <div class="actions">
+          <div class="button-rent" onclick="editUser(${user.id})">
+            <img src="../../imgs/pencil.svg">
+          </div>
+          <div class="button-rent" onclick="deleteUser(${user.id})">
+            <img src="../../imgs/trash.svg">
+          </div>  
+          <div class="button-rent" onclick="rentBook(${user.id})">
+            <img src="../../imgs/bag.svg">
+          </div>
+        </div
       </td>
     `;
 
@@ -94,5 +94,19 @@ function editUser(id) {
 }
 
 function deleteUser(id) {
-  console.log("Deletando o usuario: " + id);
+  fetch("../actions/deleteUser.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Mudei para application/json
+    },
+    body: JSON.stringify({ id }),
+  })
+    .then((response) => response.json()) // Converte a resposta para JSON
+    .then((_) => {
+      users = users.filter((user) => user.id != id);
+      updateTable();
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+    });
 }

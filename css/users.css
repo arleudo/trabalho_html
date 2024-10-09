@@ -76,7 +76,7 @@ table tr:last-child td:last-child {
 
   tbody tr td {
     display: block;
-    text-align: right;
+    text-align: left;
     position: relative;
     padding-left: 50%;
   }
