@@ -14,7 +14,7 @@
 <body>
   <div class="user-container">
     <div class="search-container">
-      <input placeholder="Buscar" id="search" class="search">
+      <input placeholder="Buscar pelo nome ou CPF" id="search" class="search">
       <div class="lupa">
         <img src="../../imgs/search.svg" alt="">
       </div>

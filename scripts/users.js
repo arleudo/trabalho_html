@@ -6,8 +6,10 @@ let search = document.getElementById("search");
 search.addEventListener("input", function () {
   if (search.value.length >= 3) {
     const searchValue = search.value.toLowerCase();
-    const newUsers = users.filter((u) =>
-      u.name.toLowerCase().includes(searchValue)
+    const newUsers = users.filter(
+      (u) =>
+        u.name.toLowerCase().includes(searchValue) ||
+        u.cpf.toLowerCase().includes(searchValue)
     );
     updateTable(newUsers);
   } else {

@@ -12,7 +12,12 @@
 <?php include '../components/header.php'; ?>
 
 <body>
+    <select class="selectBook">
+        <option class="selectBookOption" value="opcao1">Opção 1</option>
+        <option class="selectBookOption" value="opcao2">Opção 2</option>
+    </select>
     <div class="rent-container">
+
     </div>
     <script src="../../scripts/rent.js"></script>
 </body>

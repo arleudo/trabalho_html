@@ -5,6 +5,13 @@
   padding: 1rem;
   justify-items: center;
 }
+.rent-container select {
+  height: 40px;
+  background-color: #50904f;
+  display: flex;
+  margin: auto;
+  width: 200px;
+}
 
 @media (min-width: 600px) {
   .rent-container {
@@ -48,7 +55,7 @@
   height: 90%;
   padding: 0 0.5rem;
   margin-top: 0.5rem;
-  
+
   font-size: x-small;
 }
 
@@ -66,4 +73,23 @@
 .card-book:hover {
   scale: 1.05;
   border-radius: 10px;
+}
+.selectBook {
+  width: 200px;
+  padding: 1rem;
+  margin: auto;
+  height: 50px;
+  background-color: var(--form-background-color);
+  color: var(--text-color);
+}
+
+.selectBookOption {
+  width: 200px;
+  padding: 2rem;
+  margin: auto;
+  background-color: var(--button-background-color);
+  color: var(--text-color);
+}
+.selectBookOption:hover {
+  background-color: var(--button-hover-background-color);
 }
