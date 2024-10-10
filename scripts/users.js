@@ -15,7 +15,7 @@ async function saveUser() {
 
   if (!editing) {
     user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
-    const resp = await POST("../actions/saveUser.php", user);
+    const resp = await executePost("../actions/saveUser.php", user);
     if (resp) {
       users.push(user);
       updateTable();
@@ -25,7 +25,7 @@ async function saveUser() {
     user_.email = email;
     user_.cpf = cpf;
     user_.phone = phone;
-    const resp = await POST("../actions/updateUser.php", user_);
+    const resp = await executePost("../actions/updateUser.php", user_);
     if (resp) {
       updateTable();
     }
@@ -106,11 +106,23 @@ function editUser(id) {
 }
 
 async function deleteUser(id) {
-  const resp = await POST("../actions/deleteUser.php", { id });
+  const resp = await executePost("../actions/deleteUser.php", { id });
   if (resp) {
     users = users.filter((user) => user.id != id);
     updateTable();
   } else {
     console.log("Erro ao deletar usuário");
   }
+}
+
+async function executePost(action, data) {
+  const resp = await fetch(action, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return resp.json();
 }
