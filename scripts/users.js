@@ -1,6 +1,19 @@
 let users = [];
 let editing = false;
 let user_ = {};
+let search = document.getElementById("search");
+
+search.addEventListener("input", function () {
+  if (search.value.length >= 3) {
+    const searchValue = search.value.toLowerCase();
+    const newUsers = users.filter((u) =>
+      u.name.toLowerCase().includes(searchValue)
+    );
+    updateTable(newUsers);
+  } else {
+    updateTable(users);
+  }
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
@@ -18,7 +31,7 @@ async function saveUser() {
     const resp = await executePost("../actions/saveUser.php", user);
     if (resp) {
       users.push(user);
-      updateTable();
+      updateTable(users);
     }
   } else {
     user_.name = name;
@@ -27,7 +40,7 @@ async function saveUser() {
     user_.phone = phone;
     const resp = await executePost("../actions/updateUser.php", user_);
     if (resp) {
-      updateTable();
+      updateTable(users);
     }
   }
 
@@ -35,11 +48,11 @@ async function saveUser() {
   cleanUserDialog();
 }
 
-function updateTable() {
+function updateTable(array) {
   const tableBody = document.getElementById("table_users");
   tableBody.innerHTML = "";
 
-  users.forEach((user) => {
+  array.forEach((user) => {
     const row = document.createElement("tr");
 
     row.innerHTML = `
@@ -74,7 +87,7 @@ async function loadUsers() {
     .then((response) => response.json())
     .then((data) => {
       users = data;
-      updateTable();
+      updateTable(users);
     })
     .catch((error) => {
       console.error("Erro ao carregar os usuários:", error);
@@ -101,6 +114,7 @@ function editUser(id) {
     document.getElementById("input_cpf").value = user_.cpf;
     document.getElementById("input_phone").value = user_.phone;
     editing = true;
+    search.value = "";
     openDialog();
   }
 }

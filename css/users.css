@@ -1,10 +1,18 @@
-.table-container {
+.user-container {
   width: 80%;
-  margin: 1.25rem auto;
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  margin: auto;
   background-color: var(--form-background-color);
   border: 1px solid var(--form-border-color);
-  border-radius: 15px;
+  flex-direction: column;
   padding: 2rem;
+  gap: 5rem;
+}
+
+.table-container {
+  width: 100%;
   height: fit-content;
 }
 
@@ -128,4 +136,39 @@ table tr:last-child td:last-child {
 
 .buttons_dialog button {
   width: 50%;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-items: center;
+}
+
+.search {
+  padding: 0;
+  padding-left: 2rem;
+  border: none;
+  justify-self: center;
+  width: 85%;
+  border-radius: 10px;
+  height: 50px;
+  outline: none;
+}
+
+.lupa {
+  border: none;
+  margin-left: -45px;
+  display: flex;
+  background-color: var(--button-background-color);
+  width: 50px;
+  border-radius: 10px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 40px;
+    width: 40px;
+  }
 }
