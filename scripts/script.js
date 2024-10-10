@@ -17,7 +17,7 @@ function validLogin() {
   }
 }
 
-async function realizeFetch(action, data) {
+async function POST(action, data) {
   const resp = await fetch(action, {
     method: "POST",
     headers: {

@@ -12,11 +12,11 @@ async function saveBook() {
   let sinopse = document.getElementById("input_sinopse").value;
   let theme = document.getElementById("input_theme").value;
   let url = document.getElementById("input_url").value;
-  let book = { id, name, author, sinopse, theme, url, rent: true };
+  let book = {};
 
   if (!editing) {
     book = { id: books.length + 1, name, author, sinopse, theme, url, rent: 1 };
-    const resp = await realizeFetch("../actions/saveBook.php", book);
+    const resp = await POST("../actions/saveBook.php", book);
     if (resp) {
       books.push(book);
       updateTableBooks();
@@ -27,7 +27,7 @@ async function saveBook() {
     book_.sinopse = sinopse;
     book_.theme = theme;
     book_.url = url;
-    const resp = await realizeFetch("../actions/updateBook.php", book_);
+    const resp = await POST("../actions/updateBook.php", book_);
     if (resp) {
       updateTableBooks();
     }
@@ -109,7 +109,7 @@ function editBook(id) {
 }
 
 async function deleteBook(id) {
-  const resp = await realizeFetch("../actions/deleteBook.php", { id });
+  const resp = await POST("../actions/deleteBook.php", { id });
   if (resp) {
     books = books.filter((book) => book.id != id);
     updateTableBooks();

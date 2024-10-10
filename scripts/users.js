@@ -15,7 +15,7 @@ async function saveUser() {
 
   if (!editing) {
     user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
-    const resp = await realizeFetch("../actions/saveUser.php", user);
+    const resp = await POST("../actions/saveUser.php", user);
     if (resp) {
       users.push(user);
       updateTable();
@@ -25,7 +25,7 @@ async function saveUser() {
     user_.email = email;
     user_.cpf = cpf;
     user_.phone = phone;
-    const resp = await realizeFetch("../actions/updateUser.php", user_);
+    const resp = await POST("../actions/updateUser.php", user_);
     if (resp) {
       updateTable();
     }
@@ -69,7 +69,7 @@ function updateTable() {
   });
 }
 
-function loadUsers() {
+async function loadUsers() {
   fetch("../actions/loadUsers.php")
     .then((response) => response.json())
     .then((data) => {
@@ -106,7 +106,7 @@ function editUser(id) {
 }
 
 async function deleteUser(id) {
-  const resp = await realizeFetch("../actions/deleteUser.php", { id });
+  const resp = await POST("../actions/deleteUser.php", { id });
   if (resp) {
     users = users.filter((user) => user.id != id);
     updateTable();
