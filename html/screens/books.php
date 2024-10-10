@@ -12,21 +12,29 @@
 <?php include '../components/header.php'; ?>
 
 <body>
-  <div class="table-container">
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>Autor</th>
-          <th>Sinopse</th>
-          <th>Tema</th>
-          <th>Disponível</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody id="table_books">
-      </tbody>
-    </table>
+  <div class="user-container">
+    <div class="search-container">
+      <input placeholder="Buscar" id="search" class="search">
+      <div class="lupa">
+        <img src="../../imgs/search.svg" alt="">
+      </div>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Autor</th>
+            <th>Sinopse</th>
+            <th>Tema</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="table_books">
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <?php include '../components/dialogBook.php'; ?>
