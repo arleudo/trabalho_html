@@ -1,35 +1,37 @@
 let books = [];
+let editing = false;
+let book_ = {};
 
 document.addEventListener("DOMContentLoaded", function () {
   loadBooks();
 });
 
-function saveBook() {
-  const id = books.length + 1;
-
+async function saveBook() {
   let name = document.getElementById("input_name").value;
-  let url = document.getElementById("input_url").value;
   let author = document.getElementById("input_author").value;
   let sinopse = document.getElementById("input_sinopse").value;
   let theme = document.getElementById("input_theme").value;
-  let book = { id, name, url, author, sinopse, theme, rent: true };
+  let url = document.getElementById("input_url").value;
+  let book = { id, name, author, sinopse, theme, url, rent: true };
 
-  fetch("../actions/saveBook.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Mudei para application/json
-    },
-    body: JSON.stringify(book),
-  })
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((data) => {
+  if (!editing) {
+    book = { id: books.length + 1, name, author, sinopse, theme, url, rent: 1 };
+    const resp = await realizeFetch("../actions/saveBook.php", book);
+    if (resp) {
       books.push(book);
       updateTableBooks();
-      console.log(data);
-    })
-    .catch((error) => {
-      console.error("Erro:", error);
-    });
+    }
+  } else {
+    book_.name = name;
+    book_.author = author;
+    book_.sinopse = sinopse;
+    book_.theme = theme;
+    book_.url = url;
+    const resp = await realizeFetch("../actions/updateBook.php", book_);
+    if (resp) {
+      updateTableBooks();
+    }
+  }
 
   closeDialog();
   cleanBookDialog();
@@ -94,23 +96,24 @@ function rentBook(id) {
 }
 
 function editBook(id) {
-  console.log("Editando o livro: " + id);
+  book_ = books.find((u) => u.id == id);
+  if (book_) {
+    document.getElementById("input_name").value = book_.name;
+    document.getElementById("input_author").value = book_.author;
+    document.getElementById("input_sinopse").value = book_.sinopse;
+    document.getElementById("input_theme").value = book_.theme;
+    document.getElementById("input_url").value = book_.url;
+    editing = true;
+    openDialog();
+  }
 }
 
-function deleteBook(id) {
-  fetch("../actions/deleteBook.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Mudei para application/json
-    },
-    body: JSON.stringify({ id }),
-  })
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((_) => {
-      books = books.filter((book) => book.id != id);
-      updateTableBooks();
-    })
-    .catch((error) => {
-      console.error("Erro:", error);
-    });
+async function deleteBook(id) {
+  const resp = await realizeFetch("../actions/deleteBook.php", { id });
+  if (resp) {
+    books = books.filter((book) => book.id != id);
+    updateTableBooks();
+  } else {
+    console.log("Erro ao deletar livro");
+  }
 }

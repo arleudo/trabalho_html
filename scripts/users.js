@@ -6,24 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
 });
 
-async function realizeFetch(action, data) {
-  const resp = await fetch(action, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  return resp.json();
-}
-
 async function saveUser() {
   let name = document.getElementById("input_name").value;
   let email = document.getElementById("input_email").value;
   let cpf = document.getElementById("input_cpf").value;
   let phone = document.getElementById("input_phone").value;
   let user = {};
+
   if (!editing) {
     user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
     const resp = await realizeFetch("../actions/saveUser.php", user);
@@ -116,20 +105,12 @@ function editUser(id) {
   }
 }
 
-function deleteUser(id) {
-  fetch("../actions/deleteUser.php", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", // Mudei para application/json
-    },
-    body: JSON.stringify({ id }),
-  })
-    .then((response) => response.json()) // Converte a resposta para JSON
-    .then((_) => {
-      users = users.filter((user) => user.id != id);
-      updateTable();
-    })
-    .catch((error) => {
-      console.error("Erro:", error);
-    });
+async function deleteUser(id) {
+  const resp = await realizeFetch("../actions/deleteUser.php", { id });
+  if (resp) {
+    users = users.filter((user) => user.id != id);
+    updateTable();
+  } else {
+    console.log("Erro ao deletar usuário");
+  }
 }

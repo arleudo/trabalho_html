@@ -16,3 +16,15 @@ function validLogin() {
     console.log("Erro nas credenciais de login");
   }
 }
+
+async function realizeFetch(action, data) {
+  const resp = await fetch(action, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return resp.json();
+}

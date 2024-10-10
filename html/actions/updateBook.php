@@ -17,7 +17,7 @@ try {
     $url = $data['url'];
     $rent = $data['rent'];
 
-    $stmt = $pdo->prepare("INSERT INTO book (id, name, author, sinopse, theme, url, rent ) VALUES (:id, :name, :author, :sinopse, :theme, :url, :rent)");
+    $stmt = $pdo->prepare("UPDATE book SET name = :name, author = :author, sinopse = :sinopse, theme = :theme, url = :url, rent = :rent  WHERE id = :id");
 
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':name', $name);
@@ -29,10 +29,14 @@ try {
 
     $stmt->execute();
 
-    echo json_encode(["message" => "Livro cadastrado com sucesso!"]);
-
+    if ($stmt->rowCount()) {
+        echo json_encode(["message" => "Livro atualizado com sucesso!"]);
+    } else {
+        echo json_encode(["message" => "Nenhum dado foi atualizado. Verifique o ID."]);
+    }
 
 } catch (PDOException $e) {
     echo json_encode(["error" => $e]);
 }
+
 $pdo = null;
