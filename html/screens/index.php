@@ -1,3 +1,7 @@
+<?php
+include '../actions/initDatabase.php';
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
