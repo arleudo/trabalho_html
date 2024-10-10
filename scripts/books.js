@@ -2,6 +2,22 @@ let books = [];
 let editing = false;
 let book_ = {};
 
+let search = document.getElementById("searchBook");
+
+search.addEventListener("input", function () {
+  if (search.value.length >= 3) {
+    const searchValue = search.value.toLowerCase();
+    const newBooks = books.filter(
+      (u) =>
+        u.name.toLowerCase().includes(searchValue) ||
+        u.author.toLowerCase().includes(searchValue)
+    );
+    updateTableBooks(newBooks);
+  } else {
+    updateTableBooks(books);
+  }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   loadBooks();
 });
@@ -19,7 +35,7 @@ async function saveBook() {
     const resp = await executePost("../actions/saveBook.php", book);
     if (resp) {
       books.push(book);
-      updateTableBooks();
+      updateTableBooks(books);
     }
   } else {
     book_.name = name;
@@ -29,7 +45,7 @@ async function saveBook() {
     book_.url = url;
     const resp = await executePost("../actions/updateBook.php", book_);
     if (resp) {
-      updateTableBooks();
+      updateTableBooks(books);
     }
   }
 
@@ -37,11 +53,11 @@ async function saveBook() {
   cleanBookDialog();
 }
 
-function updateTableBooks() {
+function updateTableBooks(array) {
   const tableBody = document.getElementById("table_books");
   tableBody.innerHTML = "";
 
-  books.forEach((book) => {
+  array.forEach((book) => {
     const row = document.createElement("tr");
 
     row.innerHTML = `
@@ -76,7 +92,7 @@ function loadBooks() {
     .then((response) => response.json())
     .then((data) => {
       books = data;
-      updateTableBooks();
+      updateTableBooks(books);
     })
     .catch((error) => {
       console.error("Erro ao carregar os livros:", error);
@@ -112,7 +128,7 @@ async function deleteBook(id) {
   const resp = await executePost("../actions/deleteBook.php", { id });
   if (resp) {
     books = books.filter((book) => book.id != id);
-    updateTableBooks();
+    updateTableBooks(books);
   } else {
     console.log("Erro ao deletar livro");
   }
