@@ -3,6 +3,7 @@ let searchRent = document.getElementById("searchRent");
 let searchRentUser = document.getElementById("searchRentUser");
 let users = [];
 let chosedUser = {};
+let bag = [];
 
 const chosed = document.getElementById("chosed");
 chosed.disabled = true;
@@ -69,7 +70,7 @@ function updateBookCards(array) {
     if (book.rent) {
       const card = document.createElement("div");
       card.classList.add("card-book");
-      card.setAttribute("onclick", "rentBook('" + book.name + "')");
+      card.setAttribute("onclick", "rentBook('" + book.id + "')");
 
       card.innerHTML = `
       <img src="${book.url}">
@@ -102,8 +103,17 @@ async function loadUsers() {
   users = await (await fetch("../actions/loadUsers.php")).json();
 }
 
-function rentBook(name) {
-  console.log("vai alugar" + name);
+function rentBook(id) {
+  const book = books.find((b) => b.id == id);
+  if (book) {
+    const exists = bag.find((ex) => ex.id == book.id);
+    if (!exists) {
+      bag.push(book);
+      updateBagIcon(bag.length);
+    } else {
+      console.log("Livro " + exists.name + " já está na sacola");
+    }
+  }
 }
 
 function openDialogRent() {
@@ -120,4 +130,8 @@ function setUser() {
 
 function cancelSetUser() {
   window.location.href = "main.php";
+}
+
+function updateBagIcon(value) {
+  console.log(value);
 }
