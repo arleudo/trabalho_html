@@ -12,7 +12,9 @@ async function getNameFromId() {
 
   const user = users.find((u) => u.id == id);
 
-  chosenSelect.value = user.name;
+  if (user) {
+    chosenSelect.value = user.name;
+  }
 }
 
 searchRent.addEventListener("input", function () {
