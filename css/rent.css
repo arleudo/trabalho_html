@@ -101,6 +101,14 @@
   background-color: var(--button-hover-background-color);
 }
 
+.topoRentDialog {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
 .topoRent {
   display: flex;
   width: 100%;
@@ -108,6 +116,14 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.inputDisableDialog {
+  display: flex;
+  width: 50%;
+  border: 1px solid var(--button-background-color);
+  color: var(--text-color);
+  border-radius: 10px;
 }
 
 .inputDisable {

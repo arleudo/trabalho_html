@@ -132,7 +132,7 @@ button:hover {
   background-color: var(--form-background-color);
   padding: 2rem;
   border-radius: 8px;
-  width: 500px;
+  width: 50%;
 }
 
 .dialog-box h2 {

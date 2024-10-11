@@ -2,6 +2,9 @@ let books = [];
 let searchRent = document.getElementById("searchRent");
 let users = [];
 
+const chosed = document.getElementById("chosed");
+chosed.disabled = true;
+
 async function getNameFromId() {
   await loadUsers();
   const chosenSelect = document.getElementById("chosenSelect");

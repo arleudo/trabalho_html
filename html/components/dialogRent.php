@@ -2,13 +2,17 @@
     <div class="dialog-box">
         <h2>Selecione o Usuário</h2>
         <form id="addUserForm">
-            <div class="search-container">
-                <input placeholder="Buscar pelo nome ou CPF" id="search" class="search">
-                </input>
-                <div class="lupa">
-                    <img src="../../imgs/search.svg" alt="">
-                    </img>
+            <div class="topoRentDialog">
+                <div class="search-container">
+                    <input placeholder="Buscar pelo nome ou CPF" id="searchRent" class="search">
+                    </input>
+                    <div class="lupa">
+                        <img src="../../imgs/search.svg" alt="">
+                        </img>
+                    </div>
                 </div>
+                <input id="chosed" class="inputDisableDialog">
+                </input>
             </div>
         </form>
         <div class="buttons_dialog">
