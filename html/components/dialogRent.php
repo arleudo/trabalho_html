@@ -4,7 +4,7 @@
         <form id="addUserForm">
             <div class="topoRentDialog">
                 <div class="search-container">
-                    <input placeholder="Buscar pelo nome ou CPF" id="searchRent" class="search">
+                    <input placeholder="Buscar pelo nome ou CPF" id="searchRentUser" class="searchChosed">
                     </input>
                     <div class="lupa">
                         <img src="../../imgs/search.svg" alt="">

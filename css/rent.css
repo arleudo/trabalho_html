@@ -120,7 +120,7 @@
 
 .inputDisableDialog {
   display: flex;
-  width: 50%;
+  width: 93%;
   border: 1px solid var(--button-background-color);
   color: var(--text-color);
   border-radius: 10px;
@@ -140,6 +140,17 @@
   width: 50%;
   height: 50px;
   align-items: center;
+}
+
+.searchChosed {
+  display: flex;
+  padding: 0;
+  padding-left: 1rem;
+  border: 1px solid var(--button-background-color);
+  width: 100%;
+  border-radius: 10px;
+  height: 50px;
+  outline: none;
 }
 
 .search {

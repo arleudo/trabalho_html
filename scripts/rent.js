@@ -1,6 +1,8 @@
 let books = [];
 let searchRent = document.getElementById("searchRent");
+let searchRentUser = document.getElementById("searchRentUser");
 let users = [];
+let chosedUser = {};
 
 const chosed = document.getElementById("chosed");
 chosed.disabled = true;
@@ -33,6 +35,24 @@ searchRent.addEventListener("input", function () {
     updateBookCards(newBooks);
   } else {
     updateBookCards(books);
+  }
+});
+
+searchRentUser.addEventListener("input", function () {
+  if (searchRentUser.value.length >= 3) {
+    const searchValue = searchRentUser.value.toLowerCase();
+    const newusers = users.filter(
+      (u) =>
+        u.name.toLowerCase().includes(searchValue) ||
+        u.cpf.toLowerCase().includes(searchValue)
+    );
+    if (newusers.length) {
+      chosedUser = newusers[0];
+      chosed.value = chosedUser.name;
+    }
+  } else {
+    chosedUser = null;
+    chosed.value = "";
   }
 });
 
@@ -95,11 +115,9 @@ function closeDialogRent() {
 }
 
 function setUser() {
-  //TODO: definir o usuário
-  closeDialogRent();
+  window.location.href = "rent.php?id=" + chosedUser.id;
 }
 
 function cancelSetUser() {
-  console.log("quero escolher n");
   window.location.href = "main.php";
 }

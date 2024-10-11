@@ -133,6 +133,7 @@ button:hover {
   padding: 2rem;
   border-radius: 8px;
   width: 50%;
+  height: auto;
 }
 
 .dialog-box h2 {
