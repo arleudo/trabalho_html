@@ -13,11 +13,17 @@
 
 <body>
     <div class="rent-page-container">
-        <div class="search-container">
-            <input placeholder="Buscar pelo nome ou Autor" id="searchRent" class="search">
-            <div class="lupa">
-                <img src="../../imgs/search.svg" alt="">
+        <div class="topoRent">
+            <div class="search-container">
+                <input placeholder="Buscar pelo nome ou CPF" id="searchRent" class="search">
+                </input>
+                <div class="lupa">
+                    <img src="../../imgs/search.svg" alt="">
+                    </img>
+                </div>
             </div>
+            <input id="chosenSelect" class="inputDisable">
+            </input>
         </div>
         <div class="rent-container">
         </div>

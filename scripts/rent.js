@@ -1,5 +1,19 @@
 let books = [];
 let searchRent = document.getElementById("searchRent");
+let users = [];
+
+async function getNameFromId() {
+  await loadUsers();
+  const chosenSelect = document.getElementById("chosenSelect");
+  chosenSelect.disabled = true;
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get("id");
+
+  const user = users.find((u) => u.id == id);
+
+  chosenSelect.value = user.name;
+}
 
 searchRent.addEventListener("input", function () {
   if (searchRent.value.length >= 3) {
@@ -17,6 +31,7 @@ searchRent.addEventListener("input", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   loadCards();
+  getNameFromId();
 });
 
 function updateBookCards(array) {
@@ -54,6 +69,10 @@ function loadCards() {
     .catch((error) => {
       console.error("Erro ao carregar os livros:", error);
     });
+}
+
+async function loadUsers() {
+  users = await (await fetch("../actions/loadUsers.php")).json();
 }
 
 function rentBook(name) {

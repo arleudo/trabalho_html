@@ -20,10 +20,10 @@
         <div class="lupa">
           <img src="../../imgs/search.svg" alt="">
           </img>
-        </div>      
+        </div>
       </div>
       <div class="floattingButton" onclick="openDialog()">
-          <img src="../../imgs/plus.svg" alt="" />
+        <img src="../../imgs/plus.svg" alt="" />
       </div>
     </div>
     <div class="table-container">
@@ -46,6 +46,7 @@
 
 
   <?php include '../components/dialogUser.php'; ?>
+  <?php include '../components/dialogRent.php'; ?>
 
   <script src="../../scripts/script.js"></script>
   <script src="../../scripts/users.js"></script>

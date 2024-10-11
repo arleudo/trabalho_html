@@ -73,7 +73,7 @@ function updateTable(array) {
           <div class="button-rent" onclick="deleteUser(${user.id})">
             <img src="../../imgs/trash.svg">
           </div>  
-          <div class="button-rent" onclick="rentBook(${user.id})">
+          <div class="button-rent" onclick="goToRent(${user.id})">
             <img src="../../imgs/bag.svg">
           </div>
         </div
@@ -105,7 +105,12 @@ function cleanUserDialog() {
 }
 
 function rentBook(id) {
-  window.location.href = "rent.php";
+  openDialogRent(id);
+}
+
+function goToRent(id) {
+  closeDialogRent();
+  window.location.href = "rent.php?id=" + id;
 }
 
 function editUser(id) {
@@ -141,4 +146,13 @@ async function executePost(action, data) {
   });
 
   return resp.json();
+}
+
+function openDialogRent(id) {
+  document.getElementById("dialogRent").style.display = "flex";
+  console.log(id);
+}
+
+function closeDialogRent() {
+  document.getElementById("dialogRent").style.display = "none";
 }
