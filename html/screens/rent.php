@@ -12,13 +12,16 @@
 <?php include '../components/header.php'; ?>
 
 <body>
-    <select class="selectBook">
-        <option class="selectBookOption" value="opcao1">Opção 1</option>
-        <option class="selectBookOption" value="opcao2">Opção 2</option>
-    </select>
-    <div class="rent-container">
-
+<div class="rent-page-container">
+    <div class="search-container">
+        <input placeholder="Buscar pelo nome ou Autor" id="searchBook" class="search">
+        <div class="lupa">
+            <img src="../../imgs/search.svg" alt="">
+        </div>
     </div>
+    <div class="rent-container">
+    </div>
+</div>
     <script src="../../scripts/rent.js"></script>
 </body>
 

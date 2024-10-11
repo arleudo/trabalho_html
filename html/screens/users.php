@@ -13,10 +13,17 @@
 
 <body>
   <div class="user-container">
-    <div class="search-container">
-      <input placeholder="Buscar pelo nome ou CPF" id="search" class="search">
-      <div class="lupa">
-        <img src="../../imgs/search.svg" alt="">
+    <div class="topo">
+      <div class="search-container">
+        <input placeholder="Buscar pelo nome ou CPF" id="search" class="search">
+        </input>
+        <div class="lupa">
+          <img src="../../imgs/search.svg" alt="">
+          </img>
+        </div>      
+      </div>
+      <div class="floattingButton" onclick="openDialog()">
+          <img src="../../imgs/plus.svg" alt="" />
       </div>
     </div>
     <div class="table-container">
@@ -43,6 +50,5 @@
   <script src="../../scripts/script.js"></script>
   <script src="../../scripts/users.js"></script>
 </body>
-<?php include '../components/footer.php'; ?>
 
 </html>

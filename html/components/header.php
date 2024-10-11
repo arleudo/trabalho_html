@@ -9,17 +9,16 @@
 </head>
 <header>
     <div class="header-container">
-        <img src="../../imgs/logo.svg" alt="Book" class="logo">
+        <a href="../screens/main.php"><img src="../../imgs/logo.svg" alt="Book" class="logo"></a>
         <img src="../../imgs/logout.png" class="logout" onclick="logout()">
         <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
 
         <nav class="nav-container">
             <ul class="nav-list">
-                <li><a href="../screens/main.php">Home</a></li>
                 <li><a href="../screens/users.php">Usuários</a></li>
                 <li><a href="../screens/books.php">Livros</a></li>
                 <li><a href="../screens/rent.php">Alugar</a></li>
-                <li>Devolver</li>
+                <li><a href="../screens/rent.php">Devolver</a></li>
             </ul>
         </nav>
         <div class="menu-container">

@@ -105,7 +105,7 @@ function cleanUserDialog() {
 }
 
 function rentBook(id) {
-  console.log("Alugando livro para  o usuario: " + id);
+  window.location.href = "rent.php";
 }
 
 function editUser(id) {

@@ -22,7 +22,7 @@
     </a>
     <a href="./books.php">
       <div class="card">
-        <img src="../../imgs/book.png" alt="" />
+        <img src="../../imgs/logo.svg" alt="" />
         <span>Livros</span>
       </div>
     </a>
