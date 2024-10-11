@@ -5,14 +5,24 @@ header {
   display: flex;
   top: 0;
   left: 0;
-  padding: 0;
+  padding-left: 50px;
+  padding-right: 50px;
   color: var(--button-text-color);
   font-weight: bold;
 }
 
+.last {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-right: 4rem;
+}
+
 .header-container {
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: center;
   height: 80px;
   width: 100%;
@@ -20,30 +30,23 @@ header {
 }
 
 .logo {
-  padding-left: 2rem;
-  height: 4rem;
-  width: 4rem;
+  height: 60px;
   cursor: pointer;
 }
 
 .logout {
-  height: 2.3rem;
+  height: 35px;
   cursor: pointer;
   display: flex;
-  position: absolute;
-  right: 2rem;
 }
 
 .bag {
-  height: 3rem;
+  height: 40px;
   cursor: pointer;
   display: flex;
-  position: absolute;
-  right: 8rem;
 }
 
 .nav-container {
-  flex: 1;
   display: flex;
   justify-content: start;
 }
@@ -70,49 +73,10 @@ header {
 .nav-list li:hover {
   background-color: var(--button-hover-background-color);
   border-radius: 5px;
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .menu-container {
   display: none;
-}
-
-@media (max-width: 760px) {
-  .nav-container {
-    display: none;
-  }
-
-  .menu-container {
-    display: flex;
-    margin-left: 2rem;
-    cursor: pointer;
-  }
-
-  .menu-toggle {
-    font-size: 2rem;
-  }
-
-  .menu-toggle:hover {
-    rotate: 90deg;
-  }
-
-  .menu-active .nav-list {
-    display: flex;
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    flex-direction: column;
-    background-color: var(--button-background-color);
-    padding: 2rem;
-    z-index: 1;
-  }
-
-  .menu-active .nav-list li {
-    width: 100%;
-    padding: 1rem;
-  }
 }

@@ -9,20 +9,28 @@
 </head>
 <header>
     <div class="header-container">
-        <a href="../screens/main.php"><img src="../../imgs/logo.svg" alt="Book" class="logo"></a>
-        <img src="../../imgs/logout.png" class="logout" onclick="logout()">
-        <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
-
-        <nav class="nav-container">
-            <ul class="nav-list">
-                <li><a href="../screens/users.php">Usuários</a></li>
-                <li><a href="../screens/books.php">Livros</a></li>
-                <li><a href="../screens/rent.php">Alugar</a></li>
-                <li><a href="../screens/rent.php">Devolver</a></li>
-            </ul>
-        </nav>
-        <div class="menu-container">
-            <span class="menu-toggle">&#9776;</span>
+        <div>
+            <div>
+                <a href="../screens/main.php"><img src="../../imgs/logo.svg" alt="Book" class="logo"></a>
+            </div>
+        </div>
+        <div>
+            <nav class="nav-container">
+                <ul class="nav-list">
+                    <li><a href="../screens/users.php">Usuários</a></li>
+                    <li><a href="../screens/books.php">Livros</a></li>
+                    <li><a href="../screens/rent.php">Alugar</a></li>
+                    <li><a href="../screens/rent.php">Devolver</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="last">
+            <div>
+                <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
+            </div>
+            <div>
+                <img src="../../imgs/logout.png" class="logout" onclick="logout()">
+            </div>
         </div>
     </div>
 </header>
