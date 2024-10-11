@@ -12,16 +12,16 @@
 <?php include '../components/header.php'; ?>
 
 <body>
-<div class="rent-page-container">
-    <div class="search-container">
-        <input placeholder="Buscar pelo nome ou Autor" id="searchBook" class="search">
-        <div class="lupa">
-            <img src="../../imgs/search.svg" alt="">
+    <div class="rent-page-container">
+        <div class="search-container">
+            <input placeholder="Buscar pelo nome ou Autor" id="searchRent" class="search">
+            <div class="lupa">
+                <img src="../../imgs/search.svg" alt="">
+            </div>
+        </div>
+        <div class="rent-container">
         </div>
     </div>
-    <div class="rent-container">
-    </div>
-</div>
     <script src="../../scripts/rent.js"></script>
 </body>
 

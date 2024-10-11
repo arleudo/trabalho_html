@@ -1,18 +1,33 @@
 let books = [];
+let searchRent = document.getElementById("searchRent");
+
+searchRent.addEventListener("input", function () {
+  if (searchRent.value.length >= 3) {
+    const searchValue = searchRent.value.toLowerCase();
+    const newBooks = books.filter(
+      (u) =>
+        u.name.toLowerCase().includes(searchValue) ||
+        u.author.toLowerCase().includes(searchValue)
+    );
+    updateBookCards(newBooks);
+  } else {
+    updateBookCards(books);
+  }
+});
 
 document.addEventListener("DOMContentLoaded", function () {
   loadCards();
 });
 
-function updateBookCards() {
+function updateBookCards(array) {
   const rentContainer = document.querySelector(".rent-container");
   rentContainer.innerHTML = "";
 
-  books.forEach((book) => {
+  array.forEach((book) => {
     if (book.rent) {
       const card = document.createElement("div");
       card.classList.add("card-book");
-      card.setAttribute("onclick", "rentBook('" + book.id + "')");
+      card.setAttribute("onclick", "rentBook('" + book.name + "')");
 
       card.innerHTML = `
       <img src="${book.url}">
@@ -34,7 +49,7 @@ function loadCards() {
     .then((response) => response.json())
     .then((data) => {
       books = data;
-      updateBookCards();
+      updateBookCards(books);
     })
     .catch((error) => {
       console.error("Erro ao carregar os livros:", error);

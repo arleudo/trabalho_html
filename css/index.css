@@ -99,8 +99,8 @@ button:hover {
 
 .button-rent {
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 35px;
+  width: 35px;
   display: flex;
   margin: auto;
   justify-content: center;
@@ -110,6 +110,5 @@ button:hover {
 }
 
 .button-rent img {
-  height: 30px;
+  height: 22px;
 }
-
