@@ -11,10 +11,6 @@ function closeDialog() {
   document.getElementById("dialog").style.display = "none";
 }
 
-function closeDialogRent() {
-  document.getElementById("dialogRent").style.display = "none";
-}
-
 function validLogin() {
   let email = document.getElementById("field_email").value;
   let password = document.getElementById("field_password").value;

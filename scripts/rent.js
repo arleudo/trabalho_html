@@ -14,6 +14,8 @@ async function getNameFromId() {
 
   if (user) {
     chosenSelect.value = user.name;
+  } else {
+    openDialogRent();
   }
 }
 
@@ -79,4 +81,22 @@ async function loadUsers() {
 
 function rentBook(name) {
   console.log("vai alugar" + name);
+}
+
+function openDialogRent() {
+  document.getElementById("dialogRent").style.display = "flex";
+}
+
+function closeDialogRent() {
+  document.getElementById("dialogRent").style.display = "none";
+}
+
+function setUser() {
+  //TODO: definir o usuário
+  closeDialogRent();
+}
+
+function cancelSetUser() {
+  console.log("quero escolher n");
+  window.location.href = "main.php";
 }

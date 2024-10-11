@@ -46,7 +46,6 @@
 
 
   <?php include '../components/dialogUser.php'; ?>
-  <?php include '../components/dialogRent.php'; ?>
 
   <script src="../../scripts/script.js"></script>
   <script src="../../scripts/users.js"></script>

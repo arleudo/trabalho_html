@@ -12,8 +12,8 @@
             </div>
         </form>
         <div class="buttons_dialog">
-            <button type="button" onclick="closeDialogRent()">Cancelar</button>
-            <button type="button" onclick="goToRent({})">OK</button>
+            <button type="button" onclick="cancelSetUser()">Cancelar</button>
+            <button type="button" onclick="setUser()">OK</button>
         </div>
     </div>
 </div>

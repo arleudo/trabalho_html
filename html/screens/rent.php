@@ -28,6 +28,7 @@
         <div class="rent-container">
         </div>
     </div>
+    <?php include '../components/dialogRent.php'; ?>
     <script src="../../scripts/rent.js"></script>
 </body>
 

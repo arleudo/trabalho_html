@@ -104,12 +104,7 @@ function cleanUserDialog() {
   editing = false;
 }
 
-function rentBook(id) {
-  openDialogRent(id);
-}
-
 function goToRent(id) {
-  closeDialogRent();
   window.location.href = "rent.php?id=" + id;
 }
 
@@ -146,13 +141,4 @@ async function executePost(action, data) {
   });
 
   return resp.json();
-}
-
-function openDialogRent(id) {
-  document.getElementById("dialogRent").style.display = "flex";
-  console.log(id);
-}
-
-function closeDialogRent() {
-  document.getElementById("dialogRent").style.display = "none";
 }
