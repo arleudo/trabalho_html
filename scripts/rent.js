@@ -115,7 +115,24 @@ function showDetails(id) {
   const book = books.find((b) => b.id == id);
 
   if (book) {
+    let name_book = document.getElementById("name_book");
+    name_book.value = book.name;
+    let author_book = document.getElementById("author_book");
+    author_book.value = book.author;
+    let theme_book = document.getElementById("theme_book");
+    theme_book.value = book.theme;
+    let sinopse_book = document.getElementById("sinopse_book");
+    sinopse_book.value = book.sinopse;
+
     openDialogDetails(id);
+    const col_left = document.getElementById("col-left");
+    col_left.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.setAttribute("src", book.url);
+    img.setAttribute("width", "400px");
+    img.setAttribute("heigth", "auto");
+    col_left.appendChild(img);
   }
 }
 
