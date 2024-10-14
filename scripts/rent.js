@@ -3,6 +3,7 @@ let searchRent = document.getElementById("searchRent");
 let searchRentUser = document.getElementById("searchRentUser");
 let users = [];
 let chosedUser = {};
+let rents = [];
 
 const chosed = document.getElementById("chosed");
 chosed.disabled = true;
@@ -163,4 +164,30 @@ function cancelSetUser() {
 
 function updateBagIcon(value) {
   console.log(value);
+}
+
+async function rent() {  
+  let rent = {};
+
+  rent = { id: rents.length + 1, id_user: 1, id_book: 1 };
+  const resp = await executePost("../actions/saveRent.php", rent);
+  if (resp) {
+    rents.push(rent);
+    console.log(resp);
+  }
+  else{
+    console.log("erro");
+  }
+}
+
+async function executePost(action, data) {
+  const resp = await fetch(action, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return resp.json();
 }
