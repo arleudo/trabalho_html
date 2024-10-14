@@ -2,11 +2,6 @@ function openDialog() {
   document.getElementById("dialog").style.display = "flex";
 }
 
-function openDialogRent(id) {
-  document.getElementById("dialogRent").style.display = "flex";
-  console.log(id);
-}
-
 function closeDialog() {
   document.getElementById("dialog").style.display = "none";
 }
