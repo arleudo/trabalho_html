@@ -1,11 +1,12 @@
 let bag = [];
 let badge = document.getElementById("badge");
+let div_badge = document.getElementById("div_badge");
 
 document.addEventListener("DOMContentLoaded", function () {
   if (bag.length) {
-    badge.style.visibility = "visible";
+    div_badge.style.visibility = "visible";
   } else {
-    badge.style.visibility = "hidden";
+    div_badge.style.visibility = "hidden";
   }
 });
 
@@ -18,7 +19,7 @@ function addToBag(book_str) {
     console.log("Livro ja esta na sacola!");
   } else {
     bag.push(book);
-    badge.style.visibility = "visible";
+    div_badge.style.visibility = "visible";
     badge.innerText = bag.length;
   }
 }

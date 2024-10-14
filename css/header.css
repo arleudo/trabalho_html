@@ -20,6 +20,11 @@ header {
   padding-right: 4rem;
 }
 
+.iconbag {
+  display: flex;
+  align-items: center;
+}
+
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -43,25 +48,30 @@ header {
 .bag {
   height: 40px;
   cursor: pointer;
-  display: flex;
   position: relative;
-  margin-top: -20px;
+  display: flex;
+  margin-left: 40px;
 }
 
 .badge {
   background-color: red;
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  display: flex;
-  position: relative;
-  z-index: 2;
+  display: relative;
   border: 1px solid var(--text-color);
-  margin-left: 20px;
+  margin-top: -15px;
+  margin-left: -20px;
+  z-index: 4;
   color: var(--text-color);
-  font-size: x-small;
+  font-size: small;
+
+  span{
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .nav-container {

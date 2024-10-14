@@ -25,10 +25,11 @@
             </nav>
         </div>
         <div class="last">
-            <div>
-                <div class="badge" id="badge">
-                </div>
+            <div class="iconbag">
                 <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
+                <div class="badge" id="div_badge">
+                    <span id="badge"></span>
+                </div>
             </div>
             <div>
                 <img src="../../imgs/logout.png" class="logout" onclick="logout()">
