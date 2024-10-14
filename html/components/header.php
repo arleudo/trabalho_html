@@ -26,8 +26,7 @@
         </div>
         <div class="last">
             <div>
-                <div class="badge">
-                    <span id="badge_value"></span>
+                <div class="badge" id="badge">
                 </div>
                 <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
             </div>
