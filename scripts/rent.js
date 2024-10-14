@@ -3,7 +3,6 @@ let searchRent = document.getElementById("searchRent");
 let searchRentUser = document.getElementById("searchRentUser");
 let users = [];
 let chosedUser = {};
-let bag = [];
 
 const chosed = document.getElementById("chosed");
 chosed.disabled = true;
@@ -105,14 +104,9 @@ async function loadUsers() {
 
 function rentBook(id) {
   const book = books.find((b) => b.id == id);
+
   if (book) {
-    const exists = bag.find((ex) => ex.id == book.id);
-    if (!exists) {
-      bag.push(book);
-      updateBagIcon(bag.length);
-    } else {
-      console.log("Livro " + exists.name + " já está na sacola");
-    }
+    addToBag(JSON.stringify(book));
   }
 }
 
