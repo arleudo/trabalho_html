@@ -154,7 +154,7 @@ button:hover {
   background-color: var(--form-background-color);
   padding: 2rem;
   border-radius: 20px;
-  width: 75%;
+  width: 65%;
   height: auto;
 }
 
@@ -180,7 +180,7 @@ button:hover {
 .col_left {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 50%;
   height: 100%;
   border-radius: 10px;
   border: none;
@@ -192,7 +192,7 @@ button:hover {
   flex-direction: column;
   justify-content: flex-start;
   padding: 2rem;
-  width: 55%;
+  width: 50%;
   gap: 0.5rem;
   height: 100%;
   border: none;

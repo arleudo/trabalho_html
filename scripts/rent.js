@@ -115,6 +115,15 @@ function showDetails(id) {
   const book = books.find((b) => b.id == id);
 
   if (book) {
+    const col_left = document.getElementById("col-left");
+    col_left.innerHTML = "";
+
+    const img = document.createElement("img");
+    img.setAttribute("src", book.url);
+    img.setAttribute("width", "100%");
+    img.setAttribute("heigth", "auto");
+    col_left.appendChild(img);
+
     let name_book = document.getElementById("name_book");
     name_book.value = book.name;
     let author_book = document.getElementById("author_book");
@@ -125,14 +134,6 @@ function showDetails(id) {
     sinopse_book.value = book.sinopse;
 
     openDialogDetails(id);
-    const col_left = document.getElementById("col-left");
-    col_left.innerHTML = "";
-
-    const img = document.createElement("img");
-    img.setAttribute("src", book.url);
-    img.setAttribute("width", "400px");
-    img.setAttribute("heigth", "auto");
-    col_left.appendChild(img);
   }
 }
 
