@@ -1,4 +1,5 @@
 let bag = [];
+let badge = document.getElementById("badge_value");
 
 function addToBag(book_str) {
   book = JSON.parse(book_str);
@@ -9,6 +10,7 @@ function addToBag(book_str) {
     console.log("Livro ja esta na sacola!");
   } else {
     bag.push(book);
+    badge.innerText = bag.length;
     console.log("Livro " + book_str + " adicionado a sacola");
   }
 }

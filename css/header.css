@@ -44,6 +44,24 @@ header {
   height: 40px;
   cursor: pointer;
   display: flex;
+  position: relative;
+  margin-top: -20px;
+}
+
+.badge {
+  background-color: red;
+  height: 18px;
+  width: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  display: flex;
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--text-color);
+  margin-left: 20px;
+  color: var(--text-color);
+  font-size: x-small;
 }
 
 .nav-container {

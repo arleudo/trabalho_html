@@ -74,10 +74,8 @@ function updateBookCards(array) {
       card.innerHTML = `
       <img src="${book.url}">
       <div class="card-content">
-          <p><strong>${book.name}</strong></p>
+          <h4>${book.name}</h4>
           <p>${book.author}</p>
-          <p>${book.theme}</p>
-          <p>${book.sinopse}</p>
       </div>
       <button onclick="rentBook(event, ${book.id})">Adicionar</button>
     `;
@@ -120,7 +118,7 @@ function showDetails(id) {
 
     const img = document.createElement("img");
     img.setAttribute("src", book.url);
-    img.setAttribute("width", "100%");
+    img.setAttribute("width", "400px");
     img.setAttribute("heigth", "auto");
     col_left.appendChild(img);
 

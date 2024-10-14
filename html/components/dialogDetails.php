@@ -6,19 +6,19 @@
             </div>
             <div class="col_right">
                 <div class="info">
-                    <label for="">Nome:</label>
+                    <label for="name_book">Nome:</label>
                     <input id="name_book" disabled></input>
                 </div>
                 <div class="info">
-                    <label for="">Autor:</label>
+                    <label for="author_book">Autor:</label>
                     <input id="author_book" disabled></input>
                 </div>
                 <div class="info">
-                    <label for="">Tema:</label>
+                    <label for="theme_book">Tema:</label>
                     <input id="theme_book" disabled></input>
                 </div>
                 <div class="info">
-                    <label for="">Sinopse:</label>
+                    <label for="sinopse_book">Sinopse:</label>
                     <textarea id="sinopse_book" disabled></textarea>
                 </div>
                 <div class="buttons_dialog">
