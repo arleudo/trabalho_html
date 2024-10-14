@@ -29,6 +29,7 @@
         </div>
     </div>
     <?php include '../components/dialogRent.php'; ?>
+    <?php include '../components/dialogDetails.php'; ?>
     <script src="../../scripts/rent.js"></script>
 </body>
 

@@ -69,7 +69,7 @@ function updateBookCards(array) {
     if (book.rent) {
       const card = document.createElement("div");
       card.classList.add("card-book");
-      card.setAttribute("onclick", "rentBook('" + book.id + "')");
+      card.setAttribute("onclick", "showDetails('" + book.id + "')");
 
       card.innerHTML = `
       <img src="${book.url}">
@@ -79,7 +79,7 @@ function updateBookCards(array) {
           <p>${book.theme}</p>
           <p>${book.sinopse}</p>
       </div>
-      <button>Adicionar</button>
+      <button onclick="rentBook(event, ${book.id})">Adicionar</button>
     `;
       rentContainer.appendChild(card);
     }
@@ -102,7 +102,8 @@ async function loadUsers() {
   users = await (await fetch("../actions/loadUsers.php")).json();
 }
 
-function rentBook(id) {
+function rentBook(event, id) {
+  event.stopPropagation();
   const book = books.find((b) => b.id == id);
 
   if (book) {
@@ -110,12 +111,30 @@ function rentBook(id) {
   }
 }
 
+function showDetails(id) {
+  const book = books.find((b) => b.id == id);
+
+  if (book) {
+    openDialogDetails(id);
+  }
+}
+
 function openDialogRent() {
   document.getElementById("dialogRent").style.display = "flex";
 }
 
+function openDialogDetails(id) {
+  console.log("Abrindo os detalhes do livro " + id);
+
+  document.getElementById("dialog_details").style.display = "flex";
+}
+
 function closeDialogRent() {
   document.getElementById("dialogRent").style.display = "none";
+}
+
+function closeDialogDetails() {
+  document.getElementById("dialog_details").style.display = "none";
 }
 
 function setUser() {
