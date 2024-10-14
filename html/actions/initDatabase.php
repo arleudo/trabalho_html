@@ -40,7 +40,26 @@ $sql2 = "CREATE TABLE `book` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
 
+$sql3 = "CREATE TABLE `rent` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_user` INT NULL,
+  `id_book` INT NULL,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_user`
+    FOREIGN KEY (`id`)
+    REFERENCES `trabalho_html`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_book`
+    FOREIGN KEY (`id`)
+    REFERENCES `trabalho_html`.`book` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION 
+  ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+
+
 $conn->query($sql1);
 $conn->query($sql2);
+$conn->query($sql3);
 
 $conn->close();
