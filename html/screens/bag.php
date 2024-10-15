@@ -12,7 +12,14 @@
 <?php include '../components/header.php'; ?>
 
 <body>
-    <div class="bag-container">
+    <div class="main-bag-container">
+        <div class="bag-container" id="bag-container">
+        </div>
+        <div class="bag-container-confirm">
+
+            <p>Após verificar a lista de livros, <br>clique no botão abaixo para confirmar</p>
+            <button>Confirmar</button>
+        </div>
     </div>
     <script src="../../scripts/bag.js"></script>
 </body>
