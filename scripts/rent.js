@@ -83,6 +83,10 @@ function updateBookCards(array) {
       rentContainer.appendChild(card);
     }
   });
+
+  if (!array.length) {
+    rentContainer.innerHTML = "Nenhum livro disponível!";
+  }
 }
 
 function loadCards() {
@@ -90,6 +94,7 @@ function loadCards() {
     .then((response) => response.json())
     .then((data) => {
       books = data;
+      books = books.filter((b) => b.rent == 1);
       updateBookCards(books);
     })
     .catch((error) => {
@@ -164,30 +169,4 @@ function cancelSetUser() {
 
 function updateBagIcon(value) {
   console.log(value);
-}
-
-async function rent() {  
-  let rent = {};
-
-  rent = { id: rents.length + 1, id_user: 1, id_book: 1 };
-  const resp = await executePost("../actions/saveRent.php", rent);
-  if (resp) {
-    rents.push(rent);
-    console.log(resp);
-  }
-  else{
-    console.log("erro");
-  }
-}
-
-async function executePost(action, data) {
-  const resp = await fetch(action, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  return resp.json();
 }

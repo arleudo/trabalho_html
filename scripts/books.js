@@ -66,7 +66,7 @@ function updateTableBooks(array) {
       <td data-label="Sinopse">${book.sinopse}</td>
       <td data-label="Tema">${book.theme}</td>
       <td data-label="Disponível"><div class="${
-        book.rent ? "sim" : "nao"
+        book.rent == 1 ? "sim" : "nao"
       }"></div></td>
       <td data-label="Ações">
         <div class="actions">

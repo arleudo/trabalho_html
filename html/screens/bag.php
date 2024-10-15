@@ -18,7 +18,7 @@
         <div class="bag-container-confirm">
 
             <p>Após verificar a lista de livros, <br>clique no botão abaixo para confirmar</p>
-            <button>Confirmar</button>
+            <button onclick="confirmRent()">Confirmar</button>
         </div>
     </div>
     <script src="../../scripts/bag.js"></script>
