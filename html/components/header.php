@@ -26,7 +26,7 @@
         </div>
         <div class="last">
             <div class="iconbag">
-                <img src="../../imgs/bag.svg" class="bag" onclick="logout()">
+                <img src="../../imgs/bag.svg" class="bag" onclick="openBag()">
                 <div class="badge" id="div_badge">
                     <span id="badge"></span>
                 </div>
