@@ -12,15 +12,17 @@ try {
     $id = $data['id'];
     $name = $data['name'];
     $email = $data['email'];
+    $password = $data['password'];
     $cpf = $data['cpf'];
     $phone = $data['phone'];
     $active = $data['active'];
 
-    $stmt = $pdo->prepare("INSERT INTO user (id, name, email, cpf, phone, active ) VALUES (:id, :name, :email, :cpf, :phone, :active)");
+    $stmt = $pdo->prepare("INSERT INTO user (id, name, email, password, cpf, phone, active ) VALUES (:id, :name, :email, :password, :cpf, :phone, :active)");
 
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $password);
     $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':phone', $phone);
     $stmt->bindParam(':active', $active);

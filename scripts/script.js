@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", function () {
+  loadUsers();
+});
+
+async function loadUsers() {
+  users = await (await fetch("../actions/loadUsers.php")).json();
+}
+
 function openDialog() {
   document.getElementById("dialog").style.display = "flex";
 }
@@ -10,7 +18,9 @@ function validLogin() {
   let email = document.getElementById("field_email").value;
   let password = document.getElementById("field_password").value;
 
-  if (email === "admin@admin.com" && password === "admin") {
+  const found = users.find((u) => u.email == email && u.password == password);
+
+  if ((email === "admin@admin.com" && password === "admin") || found) {
     window.location.href = "main.php";
   } else {
     console.log("Erro nas credenciais de login");

@@ -13,15 +13,17 @@ try {
     $id = $data['id'];
     $name = $data['name'];
     $email = $data['email'];
+    $password = $data['password'];
     $cpf = $data['cpf'];
     $phone = $data['phone'];
     $active = $data['active'];
 
-    $stmt = $pdo->prepare("UPDATE user SET name = :name, email = :email, cpf = :cpf, phone = :phone, active = :active WHERE id = :id");
+    $stmt = $pdo->prepare("UPDATE user SET name = :name, email = :email, password = :password, cpf = :cpf, phone = :phone, active = :active WHERE id = :id");
 
     $stmt->bindParam(':id', $id);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $password);
     $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':phone', $phone);
     $stmt->bindParam(':active', $active);

@@ -24,12 +24,21 @@ document.addEventListener("DOMContentLoaded", function () {
 async function saveUser() {
   let name = document.getElementById("input_name").value;
   let email = document.getElementById("input_email").value;
+  let password = document.getElementById("input_password").value;
   let cpf = document.getElementById("input_cpf").value;
   let phone = document.getElementById("input_phone").value;
   let user = {};
 
   if (!editing) {
-    user = { id: users.length + 1, name, email, cpf, phone, active: 1 };
+    user = {
+      id: users.length + 1,
+      name,
+      email,
+      password,
+      cpf,
+      phone,
+      active: 1,
+    };
     const resp = await executePost("../actions/saveUser.php", user);
     if (resp) {
       users.push(user);
@@ -38,6 +47,7 @@ async function saveUser() {
   } else {
     user_.name = name;
     user_.email = email;
+    user_.password = password;
     user_.cpf = cpf;
     user_.phone = phone;
     const resp = await executePost("../actions/updateUser.php", user_);
@@ -99,6 +109,7 @@ async function loadUsers() {
 function cleanUserDialog() {
   document.getElementById("input_name").value = "";
   document.getElementById("input_email").value = "";
+  document.getElementById("input_password").value = "";
   document.getElementById("input_cpf").value = "";
   document.getElementById("input_phone").value = "";
   editing = false;
@@ -113,6 +124,7 @@ function editUser(id) {
   if (user_) {
     document.getElementById("input_name").value = user_.name;
     document.getElementById("input_email").value = user_.email;
+    document.getElementById("input_password").value = user_.password;
     document.getElementById("input_cpf").value = user_.cpf;
     document.getElementById("input_phone").value = user_.phone;
     editing = true;
