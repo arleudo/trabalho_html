@@ -32,7 +32,7 @@
         <span>Alugar</span>
       </div>
     </a>
-    <a href="./users.php">
+    <a href="./back.php">
       <div class="card">
         <img src="../../imgs/back.png" alt="" />
         <span>Devolver</span>
