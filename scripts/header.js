@@ -44,8 +44,12 @@ function openBag() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
   const id_user = urlParams.get("id");
-  const id_books = bag.map(item => item.id);  
-  const id_books_string = id_books.join(',');
+  const id_books = bag.map((item) => item.id);
+  const id_books_string = id_books.join(",");
 
-  window.location.href = `bag.php?id_user=${id_user}&id_book=${id_books_string}`;
+  if (bag.length) {
+    window.location.href = `bag.php?id_user=${id_user}&id_book=${id_books_string}`;
+  } else {
+    console.log("Sacola vazia");
+  }
 }

@@ -85,7 +85,7 @@ function updateBookCards(array) {
   });
 
   if (!array.length) {
-    rentContainer.innerHTML = "Nenhum livro disponível!";
+    rentContainer.innerHTML = "<p>Nenhum livro disponível!</p>";
   }
 }
 
