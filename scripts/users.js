@@ -18,6 +18,11 @@ search.addEventListener("input", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (loggedUser.email != "admin@admin.com") {
+    window.location.href = "main.php";
+  }
   loadUsers();
 });
 

@@ -21,6 +21,7 @@ function validLogin() {
   const found = users.find((u) => u.email == email && u.password == password);
 
   if ((email === "admin@admin.com" && password === "admin") || found) {
+    localStorage.setItem("user", JSON.stringify(found ? found : { email }));
     window.location.href = "main.php";
   } else {
     console.log("Erro nas credenciais de login");

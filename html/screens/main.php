@@ -14,13 +14,13 @@
 
 <body>
   <div class="main-container">
-    <a href="./users.php">
+    <a href="./users.php" id="usuarios">
       <div class="card">
         <img src="../../imgs/user.png" alt="" />
         <span>Usuários</span>
       </div>
     </a>
-    <a href="./books.php">
+    <a href="./books.php" id="livros">
       <div class="card">
         <img src="../../imgs/logo.svg" alt="" />
         <span>Livros</span>
@@ -40,6 +40,7 @@
     </a>
   </div>
   <script src="../../scripts/script.js"></script>
+  <script src="../../scripts/main.js"></script>
 </body>
 
 </html>

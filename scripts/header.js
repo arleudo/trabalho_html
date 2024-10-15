@@ -8,6 +8,18 @@ document.addEventListener("DOMContentLoaded", function () {
   } else {
     div_badge.style.visibility = "hidden";
   }
+
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (loggedUser.email != "admin@admin.com") {
+    const usuarios = document.getElementById("usuarios-header");
+    const livros = document.getElementById("livros-header");
+
+    usuarios.style.pointerEvents = "none";
+    usuarios.style.opacity = "0.5";
+    livros.style.pointerEvents = "none";
+    livros.style.opacity = "0.5";
+  }
 });
 
 function addToBag(book_str) {

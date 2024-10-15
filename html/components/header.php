@@ -17,8 +17,8 @@
         <div>
             <nav class="nav-container">
                 <ul class="nav-list">
-                    <li><a href="../screens/users.php">Usuários</a></li>
-                    <li><a href="../screens/books.php">Livros</a></li>
+                    <li><a href="../screens/users.php" id="usuarios-header">Usuários</a></li>
+                    <li><a href="../screens/books.php" id="livros-header">Livros</a></li>
                     <li><a href="../screens/rent.php">Alugar</a></li>
                     <li><a href="../screens/rent.php">Devolver</a></li>
                 </ul>
