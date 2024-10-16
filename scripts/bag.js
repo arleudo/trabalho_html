@@ -45,7 +45,6 @@ async function loadRents() {
 }
 
 async function confirmRent() {
-  console.log("rents antes de iniciar o for", rents);
   for (let index = 0; index < bag_books.length; index++) {
     const element = bag_books[index];
     const rent = {

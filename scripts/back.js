@@ -1,5 +1,6 @@
 let rentedBooks = [];
 let rents_ = [];
+let rentsByUser = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
@@ -11,14 +12,16 @@ document.addEventListener("DOMContentLoaded", async function () {
   await loadBooks();
   await loadRents();
 
-  console.log(rents_);
-
   let userRents = rents_.filter((rent) => rent.id_user === loggedUser.id);
 
-  const rentsByUser = userRents.map((rent) => {
+  rentsByUser = userRents.map((rent) => {
     return rentedBooks.find((book) => book.id === rent.id_book);
   });
 
+  updateBack();
+});
+
+function updateBack() {
   const rentContainer = document.getElementById("back-container");
   rentContainer.innerHTML = "";
 
@@ -37,7 +40,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       rentContainer.appendChild(card);
     }
   });
-});
+}
 
 async function loadBooks() {
   rentedBooks = await (await fetch("../actions/loadBooks.php")).json();
@@ -48,5 +51,27 @@ async function loadRents() {
 }
 
 async function back(id) {
-  console.log("devolvendo o livro: ", id);
+  const element = rentsByUser.find((b) => b.id == id);
+  element.rent = true;
+  const resp = await executePost("../actions/updateBook.php", element);
+  await executePost("../actions/deleteRent.php", element);
+
+  if (resp) {
+    rentsByUser = rentsByUser.filter((b) => b.id != id);
+    updateBack();
+  } else {
+    console.log("erro");
+  }
+}
+
+async function executePost(action, data) {
+  const resp = await fetch(action, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  return resp.json();
 }
