@@ -1,25 +1,20 @@
 let user = {};
-let users = [];
-let books = [];
 let bag_books = [];
 let rents = [];
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const idUser = urlParams.get("id_user");
-  const idBook = urlParams.get("id_book");
-
-  await loadUser(idUser);
-  await loadBooks();
+  user = JSON.parse(localStorage.getItem("user"));
   await loadRents();
-  await loadBook(idBook);
 
+  bag_books = JSON.parse(localStorage.getItem("bag"));
+  updateBag();
+});
+
+function updateBag() {
   const rentContainer = document.getElementById("bag-container");
   rentContainer.innerHTML = "";
 
   bag_books.forEach((book) => {
-    addToBag(JSON.stringify(book));
     if (book.rent) {
       const card = document.createElement("div");
       card.classList.add("card-book");
@@ -34,29 +29,15 @@ document.addEventListener("DOMContentLoaded", async function () {
       rentContainer.appendChild(card);
     }
   });
-});
+}
 
 function remove(id) {
   removeFromBag(id);
-}
-
-async function loadUser(id) {
-  await loadUsers();
-  user = users.find((u) => u.id == id);
-}
-
-async function loadBook(array) {
-  await loadBooks();
-  const idBookArray = array ? array.split(",").map(String) : [];
-  bag_books = books.filter((book) => idBookArray.includes(book.id));
-}
-
-async function loadUsers() {
-  users = await (await fetch("../actions/loadUsers.php")).json();
-}
-
-async function loadBooks() {
-  books = await (await fetch("../actions/loadBooks.php")).json();
+  bag_books = bag_books.filter((b) => b.id != id);
+  updateBag();
+  if (bag_books.length == 0) {
+    localStorage.removeItem("bag");
+  }
 }
 
 async function loadRents() {
@@ -83,6 +64,7 @@ async function confirmRent() {
     }
   }
   console.log("Aluguel confirmado");
+  localStorage.removeItem("bag");
   window.location.href = "main.php";
 }
 

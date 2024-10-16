@@ -1,13 +1,7 @@
 let books = [];
 let searchRent = document.getElementById("searchRent");
-let searchRentUser = document.getElementById("searchRentUser");
-let users = [];
-let chosedUser = {};
 let rents = [];
 let chosenSelect = document.getElementById("chosenSelect");
-
-const chosed = document.getElementById("chosed");
-chosed.disabled = true;
 
 async function getNameFromId() {
   chosenSelect.disabled = true;
@@ -31,24 +25,6 @@ searchRent.addEventListener("input", function () {
     updateBookCards(newBooks);
   } else {
     updateBookCards(books);
-  }
-});
-
-searchRentUser.addEventListener("input", function () {
-  if (searchRentUser.value.length >= 3) {
-    const searchValue = searchRentUser.value.toLowerCase();
-    const newusers = users.filter(
-      (u) =>
-        u.name.toLowerCase().includes(searchValue) ||
-        u.cpf.toLowerCase().includes(searchValue)
-    );
-    if (newusers.length) {
-      chosedUser = newusers[0];
-      chosed.value = chosedUser.name;
-    }
-  } else {
-    chosedUser = null;
-    chosed.value = "";
   }
 });
 
@@ -102,10 +78,6 @@ function loadCards() {
     });
 }
 
-async function loadUsers() {
-  users = await (await fetch("../actions/loadUsers.php")).json();
-}
-
 function rentBook(event, id) {
   event.stopPropagation();
   const book = books.find((b) => b.id == id);
@@ -157,10 +129,6 @@ function closeDialogRent() {
 
 function closeDialogDetails() {
   document.getElementById("dialog_details").style.display = "none";
-}
-
-function setUser() {
-  closeDialogRent();
 }
 
 function cancelSetUser() {

@@ -3,8 +3,11 @@ let badge = document.getElementById("badge");
 let div_badge = document.getElementById("div_badge");
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (bag.length) {
+  bag = JSON.parse(localStorage.getItem("bag"));
+
+  if (bag) {
     div_badge.style.visibility = "visible";
+    badge.innerText = bag.length;
   } else {
     div_badge.style.visibility = "hidden";
   }
@@ -32,6 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function addToBag(book_str) {
   book = JSON.parse(book_str);
+  if (!bag) {
+    bag = [];
+  }
 
   const exists = bag.find((b) => b.id == book.id);
 
@@ -41,6 +47,8 @@ function addToBag(book_str) {
     bag.push(book);
     div_badge.style.visibility = "visible";
     badge.innerText = bag.length;
+
+    localStorage.setItem("bag", JSON.stringify(bag));
   }
 }
 
@@ -49,8 +57,16 @@ function removeFromBag(id) {
 
   if (exists) {
     bag = bag.filter((b) => b.id != exists.id);
-    div_badge.style.visibility = "visible";
-    badge.innerText = bag.length;
+    if (bag.length) {
+      div_badge.style.visibility = "visible";
+      badge.innerText = bag.length;
+    } else {
+      localStorage.removeItem("bag");
+      div_badge.style.visibility = "hidden";
+      window.location.href = `rent.php`;
+    }
+
+    localStorage.setItem("bag", JSON.stringify(bag));
   } else {
     console.log("Livro não esta na sacola!");
   }
@@ -58,17 +74,13 @@ function removeFromBag(id) {
 
 function logout() {
   window.location.href = "index.php";
+  localStorage.removeItem("bag");
+  localStorage.removeItem("user");
 }
 
 function openBag() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const id_user = urlParams.get("id");
-  const id_books = bag.map((item) => item.id);
-  const id_books_string = id_books.join(",");
-
-  if (bag.length) {
-    window.location.href = `bag.php?id_user=${id_user}&id_book=${id_books_string}`;
+  if (bag) {
+    window.location.href = `bag.php`;
   } else {
     console.log("Sacola vazia");
   }
