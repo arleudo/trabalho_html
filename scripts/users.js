@@ -18,7 +18,7 @@ search.addEventListener("input", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  loggedUser = JSON.parse(localStorage.getItem("user"));
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email != "admin@admin.com") {
     window.location.href = "main.php";
@@ -26,43 +26,54 @@ document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
 });
 
-async function saveUser() {
-  let name = document.getElementById("input_name").value;
-  let email = document.getElementById("input_email").value;
-  let password = document.getElementById("input_password").value;
-  let cpf = document.getElementById("input_cpf").value;
-  let phone = document.getElementById("input_phone").value;
+async function saveUser(event) {
+  event.preventDefault();
+
+  let name = document.getElementById("input_name");
+  let email = document.getElementById("input_email");
+  let password = document.getElementById("input_password");
+  let cpf = document.getElementById("input_cpf");
+  let phone = document.getElementById("input_phone");
   let user = {};
 
-  if (!editing) {
-    user = {
-      id: users.length + 1,
-      name,
-      email,
-      password,
-      cpf,
-      phone,
-      active: 1,
-    };
-    const resp = await executePost("../actions/saveUser.php", user);
-    if (resp) {
-      users.push(user);
-      updateTable(users);
-    }
+  // Validando o CPF
+  if (!validCPF(cpf.value)) {
+    console.log(cpf.value);
+    cpf.setCustomValidity("CPF inválido.");
+    cpf.reportValidity();
   } else {
-    user_.name = name;
-    user_.email = email;
-    user_.password = password;
-    user_.cpf = cpf;
-    user_.phone = phone;
-    const resp = await executePost("../actions/updateUser.php", user_);
-    if (resp) {
-      updateTable(users);
+    cpf.setCustomValidity("");
+    // Se chegou até aqui, o CPF é válido
+    if (!editing) {
+      user = {
+        id: users.length + 1,
+        name: name.value,
+        email: email.value,
+        password: password.value,
+        cpf: cpf.value,
+        phone: phone.value,
+        active: 1,
+      };
+      const resp = await executePost("../actions/saveUser.php", user);
+      if (resp) {
+        users.push(user);
+        updateTable(users);
+      }
+    } else {
+      user_.name = name.value;
+      user_.email = email.value;
+      user_.password = password.value;
+      user_.cpf = cpf.value;
+      user_.phone = phone.value;
+      const resp = await executePost("../actions/updateUser.php", user_);
+      if (resp) {
+        updateTable(users);
+      }
     }
-  }
 
-  closeDialog();
-  cleanUserDialog();
+    closeDialog();
+    cleanUserDialog(); // Reseta a validade se o CPF for válido
+  }
 }
 
 function updateTable(array) {
@@ -155,4 +166,44 @@ async function executePost(action, data) {
   });
 
   return resp.json();
+}
+
+function validCPF(cpf) {
+  // Remove caracteres não numéricos
+  cpf = cpf.replace(/[^\d]+/g, "");
+
+  // Verifica se o CPF tem 11 dígitos e não é uma sequência repetida
+  if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+    return false; // CPF inválido
+  }
+
+  // Calcula os dois dígitos verificadores
+  let sum = 0;
+  let remainder;
+
+  // Valida o primeiro dígito verificador
+  for (let i = 1; i <= 9; i++) {
+    sum += parseInt(cpf.charAt(i - 1)) * (11 - i);
+  }
+  remainder = (sum * 10) % 11;
+  if (remainder === 10 || remainder === 11) {
+    remainder = 0;
+  }
+  if (remainder !== parseInt(cpf.charAt(9))) {
+    return false; // Primeiro dígito verificador inválido
+  }
+
+  sum = 0; // Reinicia a soma para o segundo dígito verificador
+  for (let i = 1; i <= 10; i++) {
+    sum += parseInt(cpf.charAt(i - 1)) * (12 - i);
+  }
+  remainder = (sum * 10) % 11;
+  if (remainder === 10 || remainder === 11) {
+    remainder = 0;
+  }
+  if (remainder !== parseInt(cpf.charAt(10))) {
+    return false; // Segundo dígito verificador inválido
+  }
+
+  return true; // CPF válido
 }
