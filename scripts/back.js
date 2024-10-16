@@ -4,12 +4,14 @@ let rents_ = [];
 document.addEventListener("DOMContentLoaded", async function () {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
 
-  if (loggedUser.email != "admin@admin.com") {
+  if (loggedUser.email == "admin@admin.com") {
     window.location.href = "main.php";
   }
 
   await loadBooks();
   await loadRents();
+
+  console.log(rents_);
 
   let userRents = rents_.filter((rent) => rent.id_user === loggedUser.id);
 
