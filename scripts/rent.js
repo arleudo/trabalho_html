@@ -4,24 +4,19 @@ let searchRentUser = document.getElementById("searchRentUser");
 let users = [];
 let chosedUser = {};
 let rents = [];
+let chosenSelect = document.getElementById("chosenSelect");
 
 const chosed = document.getElementById("chosed");
 chosed.disabled = true;
 
 async function getNameFromId() {
-  await loadUsers();
-  const chosenSelect = document.getElementById("chosenSelect");
   chosenSelect.disabled = true;
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const id = urlParams.get("id");
-
-  const user = users.find((u) => u.id == id);
+  let user = JSON.parse(localStorage.getItem("user"));
 
   if (user) {
-    chosenSelect.value = user.name;
+    chosenSelect.value = user.name + " : " + user.email;
   } else {
-    openDialogRent();
+    cancelSetUser();
   }
 }
 
@@ -58,6 +53,11 @@ searchRentUser.addEventListener("input", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (loggedUser.email == "admin@admin.com") {
+    window.location.href = "main.php";
+  }
   loadCards();
   getNameFromId();
 });
@@ -160,13 +160,9 @@ function closeDialogDetails() {
 }
 
 function setUser() {
-  window.location.href = "rent.php?id=" + chosedUser.id;
+  closeDialogRent();
 }
 
 function cancelSetUser() {
   window.location.href = "main.php";
-}
-
-function updateBagIcon(value) {
-  console.log(value);
 }

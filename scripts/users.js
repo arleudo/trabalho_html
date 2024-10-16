@@ -87,9 +87,6 @@ function updateTable(array) {
           </div>
           <div class="button-rent" onclick="deleteUser(${user.id})">
             <img src="../../imgs/trash.svg">
-          </div>  
-          <div class="button-rent" onclick="goToRent(${user.id})">
-            <img src="../../imgs/bag.svg">
           </div>
         </div
       </td>

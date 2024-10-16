@@ -105,7 +105,8 @@ button:hover {
 .actions {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 0.5rem;
   align-items: center;
 }
 

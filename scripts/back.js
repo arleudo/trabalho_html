@@ -4,6 +4,10 @@ let rents_ = [];
 document.addEventListener("DOMContentLoaded", async function () {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
 
+  if (loggedUser.email != "admin@admin.com") {
+    window.location.href = "main.php";
+  }
+
   await loadBooks();
   await loadRents();
 

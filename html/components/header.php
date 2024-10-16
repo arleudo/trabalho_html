@@ -19,8 +19,8 @@
                 <ul class="nav-list">
                     <li><a href="../screens/users.php" id="usuarios-header">Usuários</a></li>
                     <li><a href="../screens/books.php" id="livros-header">Livros</a></li>
-                    <li><a href="../screens/rent.php">Alugar</a></li>
-                    <li><a href="../screens/rent.php">Devolver</a></li>
+                    <li><a href="../screens/rent.php" id="alugar-header">Alugar</a></li>
+                    <li><a href="../screens/rent.php" id="devolver-header">Devolver</a></li>
                 </ul>
             </nav>
         </div>

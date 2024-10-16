@@ -19,7 +19,7 @@ search.addEventListener("input", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  loggedUser = JSON.parse(localStorage.getItem("user"));
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email != "admin@admin.com") {
     window.location.href = "main.php";
@@ -80,9 +80,6 @@ function updateTableBooks(array) {
           </div>
           <div class="button-rent" onclick="deleteBook(${book.id})">
             <img src="../../imgs/trash.svg">
-          </div>  
-          <div class="button-rent" onclick="rentBook(${book.id})">
-            <img src="../../imgs/bag.svg">
           </div>
         </div
       </td>

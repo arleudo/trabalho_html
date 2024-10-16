@@ -26,13 +26,13 @@
         <span>Livros</span>
       </div>
     </a>
-    <a href="./rent.php">
+    <a href="./rent.php" id="alugar">
       <div class="card">
         <img src="../../imgs/rent.png" alt="" />
         <span>Alugar</span>
       </div>
     </a>
-    <a href="./back.php">
+    <a href="./back.php" id="devolver">
       <div class="card">
         <img src="../../imgs/back.png" alt="" />
         <span>Devolver</span>

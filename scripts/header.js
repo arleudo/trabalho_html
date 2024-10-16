@@ -12,13 +12,21 @@ document.addEventListener("DOMContentLoaded", function () {
   const loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email != "admin@admin.com") {
-    const usuarios = document.getElementById("usuarios-header");
-    const livros = document.getElementById("livros-header");
+    let usuarios = document.getElementById("usuarios-header");
+    let livros = document.getElementById("livros-header");
 
     usuarios.style.pointerEvents = "none";
     usuarios.style.opacity = "0.5";
     livros.style.pointerEvents = "none";
     livros.style.opacity = "0.5";
+  } else {
+    let alugar = document.getElementById("alugar-header");
+    let devolver = document.getElementById("devolver-header");
+
+    alugar.style.pointerEvents = "none";
+    alugar.style.opacity = "0.5";
+    devolver.style.pointerEvents = "none";
+    devolver.style.opacity = "0.5";
   }
 });
 
