@@ -15,18 +15,39 @@ function closeDialog() {
 }
 
 function validLogin() {
-  let email = document.getElementById("field_email").value;
-  let password = document.getElementById("field_password").value;
+  let email = document.getElementById("field_email");
+  let password = document.getElementById("field_password");
 
-  const found = users.find((u) => u.email == email && u.password == password);
+  if (email.value == "") {
+    email.setCustomValidity("Campo obrigatório.");
+    email.reportValidity();
+    return;
+  }
 
-  if ((email === "admin@admin.com" && password === "admin") || found) {
+  if (password.value == "") {
+    password.setCustomValidity("Campo obrigatório.");
+    password.reportValidity();
+    return;
+  }
+
+  const found = users.find(
+    (u) => u.email == email.value && u.password == password.value
+  );
+
+  if (
+    (email.value === "admin@admin.com" && password.value === "admin") ||
+    found
+  ) {
     localStorage.setItem(
       "user",
-      JSON.stringify(found ? found : { name: "admin", email })
+      JSON.stringify(found ? found : { name: "admin", email: email.value })
     );
     window.location.href = "main.php";
   } else {
+    email.setCustomValidity(
+      "Credenciais de login inválidas. Verifique o e-mail ou a senha."
+    );
+    email.reportValidity();
     console.log("Erro nas credenciais de login");
   }
 }
