@@ -13,4 +13,5 @@
   transition: all 0.7s;
   color: var(--button-text-color);
   font-weight: bolder;
+  border-top: 0.5px solid var(--button-hover-background-color); 
 }

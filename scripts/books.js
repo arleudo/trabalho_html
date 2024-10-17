@@ -28,26 +28,46 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function saveBook() {
-  let name = document.getElementById("input_name").value;
-  let author = document.getElementById("input_author").value;
-  let sinopse = document.getElementById("input_sinopse").value;
-  let theme = document.getElementById("input_theme").value;
-  let url = document.getElementById("input_url").value;
+  let name = document.getElementById("input_name");
+  let author = document.getElementById("input_author");
+  let sinopse = document.getElementById("input_sinopse");
+  let theme = document.getElementById("input_theme");
+  let url = document.getElementById("input_url");
   let book = {};
 
+  
+  if (name.value == "") {
+    name.setCustomValidity("Campo obrigatório.");
+    name.reportValidity();
+    return;
+  }
+
+  if (author.value == "") {
+    author.setCustomValidity("Campo obrigatório.");
+    author.reportValidity();
+    return;
+  }
+
+  if (theme.value == "") {
+    theme.setCustomValidity("Campo obrigatório.");
+    theme.reportValidity();
+    return;
+  }
+
   if (!editing) {
-    book = { id: books.length + 1, name, author, sinopse, theme, url, rent: 1 };
+    book = { id: books.length + 1, name: name.value, author: author.value, 
+            sinopse: sinopse.value, theme: theme.value, url: url.value, rent: 1 };
     const resp = await executePost("../actions/saveBook.php", book);
     if (resp) {
       books.push(book);
       updateTableBooks(books);
     }
   } else {
-    book_.name = name;
-    book_.author = author;
-    book_.sinopse = sinopse;
-    book_.theme = theme;
-    book_.url = url;
+    book_.name = name.value;
+    book_.author = author.value;
+    book_.sinopse = sinopse.value;
+    book_.theme = theme.value;
+    book_.url = url.value;
     const resp = await executePost("../actions/updateBook.php", book_);
     if (resp) {
       updateTableBooks(books);

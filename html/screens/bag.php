@@ -16,9 +16,7 @@
     <div class="main-bag-container">
         <div class="bag-container" id="bag-container">
         </div>
-        <div class="bag-container-confirm">
-
-            <p>Após verificar a lista de livros, <br>clique no botão abaixo para confirmar</p>
+        <div class="bag-container-confirm">            
             <button onclick="confirmRent()">Confirmar</button>
         </div>
     </div>
