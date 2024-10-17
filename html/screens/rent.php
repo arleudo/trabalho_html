@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/rent.css" />
 </head>
 <?php include '../components/header.php'; ?>
+<?php include '../components/userInfo.php'; ?>
 
 <body>
     <div class="rent-page-container">
@@ -22,8 +23,6 @@
                     </img>
                 </div>
             </div>
-            <input id="chosenSelect" class="inputDisable">
-            </input>
         </div>
         <div class="rent-container">
         </div>

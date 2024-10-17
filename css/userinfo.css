@@ -1,0 +1,16 @@
+.info-container {
+  background-color: var(--button-background-color);
+  display: flex;
+  top: 4rem;
+  left: 0;
+  position: absolute;
+  margin-top: 0;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  gap: 1rem;
+  width: 100%;
+  transition: all 0.7s;
+  color: var(--button-text-color);
+  font-weight: bolder;
+}

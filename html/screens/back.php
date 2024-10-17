@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/bag.css" />
 </head>
 <?php include '../components/header.php'; ?>
+<?php include '../components/userInfo.php'; ?>
 
 <body>
     <div class="main-bag-container">

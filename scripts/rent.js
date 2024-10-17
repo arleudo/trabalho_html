@@ -1,18 +1,6 @@
 let books = [];
 let searchRent = document.getElementById("searchRent");
 let rents = [];
-let chosenSelect = document.getElementById("chosenSelect");
-
-async function getNameFromId() {
-  chosenSelect.disabled = true;
-  let user = JSON.parse(localStorage.getItem("user"));
-
-  if (user) {
-    chosenSelect.value = user.name + " : " + user.email;
-  } else {
-    cancelSetUser();
-  }
-}
 
 searchRent.addEventListener("input", function () {
   if (searchRent.value.length >= 3) {

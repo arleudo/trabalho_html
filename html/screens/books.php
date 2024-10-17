@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../../css/users.css" />
 </head>
 <?php include '../components/header.php'; ?>
+<?php include '../components/userInfo.php'; ?>
 
 <body>
   <div class="user-container">
@@ -20,10 +21,10 @@
         <div class="lupa">
           <img src="../../imgs/search.svg" alt="">
           </img>
-        </div>      
+        </div>
       </div>
       <div class="floattingButton" onclick="openDialog()">
-          <img src="../../imgs/plus.svg" alt="" />
+        <img src="../../imgs/plus.svg" alt="" />
       </div>
     </div>
     <div class="table-container">
