@@ -27,21 +27,45 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 async function saveUser() {
-  let name = document.getElementById("input_name").value;
-  let email = document.getElementById("input_email").value;
-  let password = document.getElementById("input_password").value;
-  let cpf = document.getElementById("input_cpf").value;
-  let phone = document.getElementById("input_phone").value;
+  let name = document.getElementById("input_name");
+  let email = document.getElementById("input_email");
+  let password = document.getElementById("input_password");
+  let cpf = document.getElementById("input_cpf");
+  let phone = document.getElementById("input_phone");
   let user = {};
+
+  if (name.value == "") {
+    name.setCustomValidity("Campo obrigatório.");
+    name.reportValidity();
+    return;
+  }
+
+  if (email.value == "") {
+    email.setCustomValidity("Campo obrigatório.");
+    email.reportValidity();
+    return;
+  }
+
+  if (password.value == "") {
+    password.setCustomValidity("Campo obrigatório.");
+    password.reportValidity();
+    return;
+  }
+
+  if (!validarCPF(cpf.value)) {
+    cpf.setCustomValidity("CPF Inválido");
+    cpf.reportValidity();
+    return;
+  }
 
   if (!editing) {
     user = {
       id: users.length + 1,
-      name,
-      email,
-      password,
-      cpf,
-      phone,
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      cpf: cpf.value,
+      phone: phone.value,
       active: 1,
     };
     const resp = await executePost("../actions/saveUser.php", user);
@@ -50,10 +74,10 @@ async function saveUser() {
       updateTable(users);
     }
   } else {
-    user_.name = name;
-    user_.email = email;
-    user_.password = password;
-    user_.cpf = cpf;
+    user_.name = name.value;
+    user_.email = email.value;
+    user_.password = password.value;
+    user_.cpf = cpf.value;
     user_.phone = phone;
     const resp = await executePost("../actions/updateUser.php", user_);
     if (resp) {
@@ -155,4 +179,41 @@ async function executePost(action, data) {
   });
 
   return resp.json();
+}
+
+function validarCPF(cpf) {
+  cpf = cpf.replace(/[^\d]+/g, "");
+
+  if (cpf.length !== 11) {
+    return false;
+  }
+
+  if (/^(\d)\1+$/.test(cpf)) {
+    return false;
+  }
+
+  let soma;
+  let resto;
+
+  soma = 0;
+  for (let i = 1; i <= 9; i++) {
+    soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+  }
+  resto = (soma * 10) % 11;
+  if (resto === 10 || resto === 11) resto = 0;
+  if (resto !== parseInt(cpf.substring(9, 10))) {
+    return false;
+  }
+
+  soma = 0;
+  for (let i = 1; i <= 10; i++) {
+    soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+  }
+  resto = (soma * 10) % 11;
+  if (resto === 10 || resto === 11) resto = 0;
+  if (resto !== parseInt(cpf.substring(10, 11))) {
+    return false;
+  }
+
+  return true;
 }
