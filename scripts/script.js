@@ -14,6 +14,14 @@ function closeDialog() {
   document.getElementById("dialog").style.display = "none";
 }
 
+function validarInput(input) {
+  input.value = input.value.replace(/[^0-9.]/g, '');
+
+    if (input.value.length > 11) {
+        input.value = input.value.slice(0, 11);
+    }
+}
+
 function validLogin() {
   let email = document.getElementById("field_email");
   let password = document.getElementById("field_password");
@@ -48,6 +56,5 @@ function validLogin() {
       "Credenciais de login inválidas. Verifique o e-mail ou a senha."
     );
     email.reportValidity();
-    console.log("Erro nas credenciais de login");
   }
 }
