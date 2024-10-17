@@ -163,7 +163,7 @@ async function deleteUser(id) {
   const resp = await executePost("../actions/deleteUser.php", { id });
   if (resp) {
     users = users.filter((user) => user.id != id);
-    updateTable();
+    updateTable(users);
   } else {
     console.log("Erro ao deletar usuário");
   }
