@@ -15,46 +15,39 @@ function closeDialog() {
 }
 
 function validarInput(input) {
-  input.value = input.value.replace(/[^0-9.]/g, '');
+  input.value = input.value.replace(/[^0-9.]/g, "");
 
-    if (input.value.length > 11) {
-        input.value = input.value.slice(0, 11);
-    }
+  if (input.value.length > 11) {
+    input.value = input.value.slice(0, 11);
+  }
 }
 
 function validLogin() {
-  let email = document.getElementById("field_email");
-  let password = document.getElementById("field_password");
+  const emailField = document.getElementById("field_email");
+  const passwordField = document.getElementById("field_password");
 
-  if (email.value == "") {
-    email.setCustomValidity("Campo obrigatório.");
-    email.reportValidity();
-    return;
-  }
-
-  if (password.value == "") {
-    password.setCustomValidity("Campo obrigatório.");
-    password.reportValidity();
+  if (emailField.value === "" || passwordField.value === "") {
+    const campoVazio = emailField.value === "" ? "E-mail" : "Senha";
+    emailField.setCustomValidity(`Campo ${campoVazio} é obrigatório.`);
+    emailField.reportValidity();
     return;
   }
 
   const found = users.find(
-    (u) => u.email == email.value && u.password == password.value
+    (u) => u.email === emailField.value && u.password === passwordField.value
   );
 
-  if (
-    (email.value === "admin@admin.com" && password.value === "admin") ||
-    found
-  ) {
-    localStorage.setItem(
-      "user",
-      JSON.stringify(found ? found : { name: "admin", email: email.value })
-    );
+  const isAdmin =
+    emailField.value === "admin@admin.com" && passwordField.value === "admin";
+
+  if (found || isAdmin) {
+    const userData = found ? found : { name: "admin", email: emailField.value };
+    localStorage.setItem("user", JSON.stringify(userData));
     window.location.href = "main.php";
   } else {
-    email.setCustomValidity(
+    emailField.setCustomValidity(
       "Credenciais de login inválidas. Verifique o e-mail ou a senha."
     );
-    email.reportValidity();
+    emailField.reportValidity();
   }
 }

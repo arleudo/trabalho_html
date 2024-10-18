@@ -7,7 +7,10 @@
   background-color: var(--background-color);
   padding: 2rem;
   gap: 5rem;
+  box-sizing: border-box;
 }
+
+/* Container de conteúdo */
 .bag-container {
   width: 95%;
   display: flex;
@@ -19,21 +22,25 @@
   flex-direction: row;
   padding: 2rem;
   gap: 5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Container de confirmação */
 .bag-container-confirm {
-  display: flex;
   position: fixed;
   bottom: 2rem;
   right: 2rem;
   width: 140px;
+  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
   background-color: transparent;
   padding: 10px;
+  z-index: 1;
 }
 
+/* Cartão de livro */
 .card-book {
   display: flex;
   flex-direction: column;
@@ -45,7 +52,7 @@
   transition: all 0.6s;
   color: var(--button-text-color);
   border: 1px solid var(--button-background-color);
-  color: var(--text-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .card-book img {
@@ -53,25 +60,30 @@
   height: 50%;
   min-height: 50%;
   object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
+
 .card-book .card-content {
-  height: 90%;
   padding: 0 0.5rem;
   margin-top: 0.5rem;
+  overflow-y: auto;
 }
 
 .card-book button {
   height: 60%;
-  margin-top: 0;
+  margin-top: auto;
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0;
   border-radius: 0;
+  background-color: var(--button-background-color);
+  color: var(--button-text-color);
 }
 
 .card-book:hover {
-  scale: 1.05;
+  transform: scale(1.05);
   border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
