@@ -51,6 +51,7 @@ async function confirmRent() {
       id: rents.length + 1,
       id_user: user.id,
       id_book: element.id,
+      active: true,
     };
     element.rent = false;
     await executePost("../actions/updateBook.php", element);

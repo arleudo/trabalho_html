@@ -1,21 +1,19 @@
-let rentedBooks = [];
 let rents_ = [];
-let rentsByUser = [];
+let books = [];
+let book_rented_user = [];
+let loggedUser = {};
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email == "admin@admin.com") {
     window.location.href = "main.php";
   }
 
-  await loadBooks();
   await loadRents();
-
-  let userRents = rents_.filter((rent) => rent.id_user === loggedUser.id);
-
-  rentsByUser = userRents.map((rent) => {
-    return rentedBooks.find((book) => book.id === rent.id_book);
+  await loadBooks();
+  book_rented_user = rents_.map((rent) => {
+    return books.find((book) => book.id == rent.id_book);
   });
 
   updateBack();
@@ -25,7 +23,7 @@ function updateBack() {
   const rentContainer = document.getElementById("back-container");
   rentContainer.innerHTML = "";
 
-  rentsByUser.forEach((book) => {
+  book_rented_user.forEach((book) => {
     if (book.rent) {
       const card = document.createElement("div");
       card.classList.add("card-book");
@@ -43,24 +41,29 @@ function updateBack() {
 }
 
 async function loadBooks() {
-  rentedBooks = await (await fetch("../actions/loadBooks.php")).json();
+  books = await (await fetch("../actions/loadBooks.php")).json();
+  books = books.filter((book) => book.rent == false);
 }
 
 async function loadRents() {
   rents_ = await (await fetch("../actions/loadRents.php")).json();
+  rents_ = rents_.filter(
+    (rent) => rent.active == true && rent.id_user == loggedUser.id
+  );
 }
 
 async function back(id) {
-  const element = rentsByUser.find((b) => b.id == id);
-  element.rent = true;
-  const resp = await executePost("../actions/updateBook.php", element);
-  await executePost("../actions/deleteRent.php", element);
+  const element = book_rented_user.find((b) => b.id == id);
+  if (element) {
+    element.rent = true;
+    await executePost("../actions/updateBook.php", element);
 
-  if (resp) {
-    rentsByUser = rentsByUser.filter((b) => b.id != id);
+    const rent_to_update = rents_.find((rent) => rent.id_book == id);
+    rent_to_update.active = false;
+    await executePost("../actions/updateRent.php", rent_to_update);
+
+    book_rented_user = book_rented_user.filter((b) => b.id != id);
     updateBack();
-  } else {
-    console.log("erro");
   }
 }
 

@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "main.php";
   }
   loadCards();
-  getNameFromId();
 });
 
 function updateBookCards(array) {
