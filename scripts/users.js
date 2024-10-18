@@ -34,6 +34,8 @@ async function saveUser() {
   let phone = document.getElementById("input_phone");
   let user = {};
 
+  
+
   if (name.value == "") {
     name.setCustomValidity("Campo obrigatório.");
     name.reportValidity();
