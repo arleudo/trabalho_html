@@ -17,7 +17,10 @@
         <div class="bag-container" id="back-container">
         </div>
     </div>
+    <script src="../../scripts/script.js"></script>
     <script src="../../scripts/back.js"></script>
+
+    <?php include '../components/dialogRecomendation.php'; ?>
 </body>
 
 </html>

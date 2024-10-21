@@ -55,6 +55,14 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.estrela {
+  color: var(--button-background-color);
+  font-size: 50px;
+  display: inline-flex;
+  margin-top: 5rem;
+  cursor: pointer;
+}
+
 .card-book img {
   width: 100%;
   height: 50%;
@@ -66,15 +74,18 @@
 
 .card-book .card-content {
   padding: 0 0.5rem;
+  color: var(--text-color);
   margin-top: 0.5rem;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .card-book button {
-  height: 60%;
   margin-top: auto;
   display: flex;
+  overflow: hidden;
   width: 100%;
+  margin-bottom: 0;
+  border-bottom: 0;
   justify-content: center;
   align-items: center;
   border-radius: 0;
