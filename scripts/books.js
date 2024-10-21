@@ -4,30 +4,40 @@ let book_ = {};
 
 let search = document.getElementById("searchBook");
 
+// função que carrega na inicialização da pagina
+document.addEventListener("DOMContentLoaded", function () {
+  // pegando o usuario logado do local storage
+  const loggedUser = JSON.parse(localStorage.getItem("user"));
+
+  if (loggedUser.email != "admin@admin.com") {
+    window.location.href = "main.php";
+  }
+  // carregando os livros do banco
+  loadBooks();
+});
+
+// pegando o texto do input de busca
 search.addEventListener("input", function () {
+  // so faz alguma coisa a partir da 3ª letra
   if (search.value.length >= 3) {
+    // coloca tudo pra minuscula pra facilitar a comparação
     const searchValue = search.value.toLowerCase();
     const newBooks = books.filter(
       (u) =>
         u.name.toLowerCase().includes(searchValue) ||
         u.author.toLowerCase().includes(searchValue)
     );
+    // atualiza a tela com os livros filtrados
     updateTableBooks(newBooks);
   } else {
+    // atualiza a tela com os livros iniciais
     updateTableBooks(books);
   }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
-
-  if (loggedUser.email != "admin@admin.com") {
-    window.location.href = "main.php";
-  }
-  loadBooks();
-});
-
+// salva o livro no banco de dados
 async function saveBook() {
+  // pegando os valores dos campos
   let name = document.getElementById("input_name");
   let author = document.getElementById("input_author");
   let sinopse = document.getElementById("input_sinopse");
@@ -35,7 +45,7 @@ async function saveBook() {
   let url = document.getElementById("input_url");
   let book = {};
 
-  
+  // validando se os campos estao vazios
   if (name.value == "") {
     name.setCustomValidity("Campo obrigatório.");
     name.reportValidity();
@@ -54,12 +64,22 @@ async function saveBook() {
     return;
   }
 
+  // verificando se ira editar ou criar
   if (!editing) {
-    book = { id: books.length + 1, name: name.value, author: author.value, 
-            sinopse: sinopse.value, theme: theme.value, url: url.value, rent: 1 };
+    book = {
+      id: books.length + 1,
+      name: name.value,
+      author: author.value,
+      sinopse: sinopse.value,
+      theme: theme.value,
+      url: url.value,
+      rent: 1,
+    };
+    // salvando no banco o novo livro
     const resp = await executePost("../actions/saveBook.php", book);
     if (resp) {
       books.push(book);
+      // atualiza a tela com o livro novo criado
       updateTableBooks(books);
     }
   } else {
@@ -68,20 +88,25 @@ async function saveBook() {
     book_.sinopse = sinopse.value;
     book_.theme = theme.value;
     book_.url = url.value;
+    // atualizando o livro no banco
     const resp = await executePost("../actions/updateBook.php", book_);
     if (resp) {
+      // atualizando a tela com os dados alterados
       updateTableBooks(books);
     }
   }
 
+  // fechando o dialog e limpando
   closeDialog();
   cleanBookDialog();
 }
 
+// atualizando a tela com os livros filtrados ou recuperados do banco
 function updateTableBooks(array) {
   const tableBody = document.getElementById("table_books");
   tableBody.innerHTML = "";
 
+  // iterando no array
   array.forEach((book) => {
     const row = document.createElement("tr");
 
@@ -109,6 +134,7 @@ function updateTableBooks(array) {
   });
 }
 
+// carrega os livros do banco
 function loadBooks() {
   fetch("../actions/loadBooks.php")
     .then((response) => response.json())
@@ -121,6 +147,7 @@ function loadBooks() {
     });
 }
 
+// limpa os campos
 function cleanBookDialog() {
   document.getElementById("input_name").value = "";
   document.getElementById("input_author").value = "";
@@ -129,12 +156,10 @@ function cleanBookDialog() {
   document.getElementById("input_theme").value = "";
 }
 
-function rentBook(id) {
-  console.log("Alugando o livro: " + id);
-}
-
+// editando o livro selecionado
 function editBook(id) {
   book_ = books.find((u) => u.id == id);
+  // preenchendo os campos com o livro selecionado
   if (book_) {
     document.getElementById("input_name").value = book_.name;
     document.getElementById("input_author").value = book_.author;
@@ -146,6 +171,7 @@ function editBook(id) {
   }
 }
 
+// remove um livro no banco de dados
 async function deleteBook(id) {
   const resp = await executePost("../actions/deleteBook.php", { id });
   if (resp) {
@@ -156,6 +182,7 @@ async function deleteBook(id) {
   }
 }
 
+// executa o acesso ao banco
 async function executePost(action, data) {
   const resp = await fetch(action, {
     method: "POST",

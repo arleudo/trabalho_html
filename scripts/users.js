@@ -3,30 +3,40 @@ let editing = false;
 let user_ = {};
 let search = document.getElementById("search");
 
-search.addEventListener("input", function () {
-  if (search.value.length >= 3) {
-    const searchValue = search.value.toLowerCase();
-    const newUsers = users.filter(
-      (u) =>
-        u.name.toLowerCase().includes(searchValue) ||
-        u.cpf.toLowerCase().includes(searchValue)
-    );
-    updateTable(newUsers);
-  } else {
-    updateTable(users);
-  }
-});
-
+// função de carregamento da pagina
 document.addEventListener("DOMContentLoaded", function () {
   loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email != "admin@admin.com") {
     window.location.href = "main.php";
   }
+  // carregando os usuários do banco
   loadUsers();
 });
 
+// pegando o campo de busca
+search.addEventListener("input", function () {
+  // so faz alguma coisa a partir da 3 ª letra
+  if (search.value.length >= 3) {
+    // colocando tudo em minusculo pra facilitar as comparações
+    const searchValue = search.value.toLowerCase();
+    const newUsers = users.filter(
+      (u) =>
+        // filtrando com base no nome e no cpf
+        u.name.toLowerCase().includes(searchValue) ||
+        u.cpf.toLowerCase().includes(searchValue)
+    );
+    // atualiza a tela com os usuarios filtrados
+    updateTable(newUsers);
+  } else {
+    // atualiza a tela com os usuários carregados do banco
+    updateTable(users);
+  }
+});
+
+// salva um usuário no banco
 async function saveUser() {
+  // pegando os campos preenchido
   let name = document.getElementById("input_name");
   let email = document.getElementById("input_email");
   let password = document.getElementById("input_password");
@@ -34,8 +44,7 @@ async function saveUser() {
   let phone = document.getElementById("input_phone");
   let user = {};
 
-  
-
+  // aplicando validação de campos vazios
   if (name.value == "") {
     name.setCustomValidity("Campo obrigatório.");
     name.reportValidity();
@@ -54,12 +63,14 @@ async function saveUser() {
     return;
   }
 
+  // aplicando a validação de cpf
   if (!validarCPF(cpf.value)) {
     cpf.setCustomValidity("CPF Inválido");
     cpf.reportValidity();
     return;
   }
 
+  // verificando de esta editando ou criando um novo usuário
   if (!editing) {
     user = {
       id: users.length + 1,
@@ -70,8 +81,10 @@ async function saveUser() {
       phone: phone.value,
       active: 1,
     };
+    // criando um novo usuário no banco
     const resp = await executePost("../actions/saveUser.php", user);
     if (resp) {
+      // atualizando a tela com o novo usuario criado
       users.push(user);
       updateTable(users);
     }
@@ -81,20 +94,25 @@ async function saveUser() {
     user_.password = password.value;
     user_.cpf = cpf.value;
     user_.phone = phone;
+    // atualizando o usuário
     const resp = await executePost("../actions/updateUser.php", user_);
     if (resp) {
+      // atualizando a tela com o usuário alterado
       updateTable(users);
     }
   }
 
+  // fechando o dialog e limpando os campos
   closeDialog();
   cleanUserDialog();
 }
 
+// atualizando a tela com base no array de usuarios
 function updateTable(array) {
   const tableBody = document.getElementById("table_users");
   tableBody.innerHTML = "";
 
+  // varrendo o array de usuários, pra cada usuário uma nova linha sera inserida na tabela
   array.forEach((user) => {
     const row = document.createElement("tr");
 
@@ -122,11 +140,13 @@ function updateTable(array) {
   });
 }
 
+// carrega os usuários do banco de dados
 async function loadUsers() {
   fetch("../actions/loadUsers.php")
     .then((response) => response.json())
     .then((data) => {
       users = data;
+      // insere os usuários na tabela
       updateTable(users);
     })
     .catch((error) => {
@@ -134,6 +154,7 @@ async function loadUsers() {
     });
 }
 
+// limpando os campos
 function cleanUserDialog() {
   document.getElementById("input_name").value = "";
   document.getElementById("input_email").value = "";
@@ -143,13 +164,11 @@ function cleanUserDialog() {
   editing = false;
 }
 
-function goToRent(id) {
-  window.location.href = "rent.php?id=" + id;
-}
-
+// editando o usuário selecionado
 function editUser(id) {
   user_ = users.find((u) => u.id == id);
   if (user_) {
+    // preenchendo os campos
     document.getElementById("input_name").value = user_.name;
     document.getElementById("input_email").value = user_.email;
     document.getElementById("input_password").value = user_.password;
@@ -161,9 +180,12 @@ function editUser(id) {
   }
 }
 
+// função que remove um usuário no banco de dados
 async function deleteUser(id) {
+  // removendo o usuário
   const resp = await executePost("../actions/deleteUser.php", { id });
   if (resp) {
+    // atualizado a tela pra nao msotrar mais o usuario removido
     users = users.filter((user) => user.id != id);
     updateTable(users);
   } else {
@@ -171,6 +193,7 @@ async function deleteUser(id) {
   }
 }
 
+// função que acessa o banco de dados
 async function executePost(action, data) {
   const resp = await fetch(action, {
     method: "POST",
@@ -183,6 +206,7 @@ async function executePost(action, data) {
   return resp.json();
 }
 
+// funçao que valida um cpf com base no algoritmo nacional do resto de 11
 function validarCPF(cpf) {
   cpf = cpf.replace(/[^\d]+/g, "");
 

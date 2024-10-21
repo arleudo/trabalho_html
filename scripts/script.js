@@ -1,19 +1,25 @@
+// função de inicialização da pagina
 document.addEventListener("DOMContentLoaded", function () {
   loadUsers();
 });
 
+// carrega os usuários do banco
 async function loadUsers() {
   users = await (await fetch("../actions/loadUsers.php")).json();
 }
 
+// função generica pra abrir um dialog
 function openDialog() {
   document.getElementById("dialog").style.display = "flex";
 }
 
+// função generica pra fechar um dialog
 function closeDialog() {
   document.getElementById("dialog").style.display = "none";
 }
 
+// valida o input pra impedir de digitar letras no campo
+// essa função é usada nos campos de telefone e cpf
 function validarInput(input) {
   input.value = input.value.replace(/[^0-9.]/g, "");
 
@@ -22,10 +28,13 @@ function validarInput(input) {
   }
 }
 
+// função que valida o login
 function validLogin() {
+  // pegando os campos
   const emailField = document.getElementById("field_email");
   const passwordField = document.getElementById("field_password");
 
+  // aplicando uma validação de campos vazios
   if (emailField.value === "" || passwordField.value === "") {
     const campoVazio = emailField.value === "" ? "E-mail" : "Senha";
     emailField.setCustomValidity(`Campo ${campoVazio} é obrigatório.`);
@@ -33,13 +42,16 @@ function validLogin() {
     return;
   }
 
+  // verificando se encontra na lista d usuários
   const found = users.find(
     (u) => u.email === emailField.value && u.password === passwordField.value
   );
 
+  // verificando se é o usuário administrador do sistema
   const isAdmin =
     emailField.value === "admin@admin.com" && passwordField.value === "admin";
 
+  // se encontrou um usuário ou se é admin, permite avançar no sistema
   if (found || isAdmin) {
     const userData = found ? found : { name: "admin", email: emailField.value };
     localStorage.setItem("user", JSON.stringify(userData));
