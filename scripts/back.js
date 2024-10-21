@@ -2,6 +2,8 @@ let rents_ = [];
 let books = [];
 let book_rented_user = [];
 let loggedUser = {};
+let id_ = 0;
+let comments = [];
 
 // função que executa na inicialização da página
 document.addEventListener("DOMContentLoaded", async function () {
@@ -12,14 +14,12 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   let estrelas = document.querySelectorAll(".estrela");
-  console.log(estrelas);
 
   // Adicionando o evento de click nas estrelas
   estrelas.forEach((estrela) => {
     estrela.addEventListener("click", () => {
       let rating = parseInt(estrela.getAttribute("data-value")); // Conversão correta para número
       estrelas.forEach((item, index) => {
-        console.log(rating);
         item.innerHTML = index < rating ? "&#9733;" : "&#9734;";
       });
     });
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   await loadRents();
   await loadBooks();
+  await loadComments();
   book_rented_user = rents_.map((rent) => {
     return books.find((book) => book.id == rent.id_book);
   });
@@ -60,6 +61,10 @@ async function loadBooks() {
   books = books.filter((book) => book.rent == false);
 }
 
+async function loadComments() {
+  comments = await (await fetch("../actions/loadComments.php")).json();
+}
+
 async function loadRents() {
   rents_ = await (await fetch("../actions/loadRents.php")).json();
   rents_ = rents_.filter(
@@ -68,22 +73,8 @@ async function loadRents() {
 }
 
 async function back(id) {
-  const element = book_rented_user.find((b) => b.id == id);
-  if (element) {
-    openDialog();
-  }
-
-  // colocando o livro disponivel pra aluguel
-  // element.rent = true;
-  // await executePost("../actions/updateBook.php", element);
-
-  // // colocando o aluguel com inativo, pra definir que ele ja foi devolvido
-  // const rent_to_update = rents_.find((rent) => rent.id_book == id);
-  // rent_to_update.active = false;
-  // await executePost("../actions/updateRent.php", rent_to_update);
-
-  // book_rented_user = book_rented_user.filter((b) => b.id != id);
-  // updateBack();
+  id_ = id;
+  openDialog();
 }
 
 // função que acessa o banco
@@ -99,7 +90,21 @@ async function executePost(action, data) {
   return resp.json();
 }
 
-function saveComment() {
+async function saveComment() {
   closeDialog();
-  console.log("salvando o comentario");
+
+  const element = book_rented_user.find((b) => b.id == id_);
+  if (element) {
+  }
+  //colocando o livro disponivel pra aluguel
+  element.rent = true;
+  await executePost("../actions/updateBook.php", element);
+
+  // colocando o aluguel com inativo, pra definir que ele ja foi devolvido
+  const rent_to_update = rents_.find((rent) => rent.id_book == id_);
+  rent_to_update.active = false;
+  await executePost("../actions/updateRent.php", rent_to_update);
+
+  book_rented_user = book_rented_user.filter((b) => b.id != id_);
+  updateBack();
 }
