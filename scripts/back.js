@@ -122,4 +122,5 @@ async function saveComment() {
 
   closeDialog();
   updateBack();
+  showToast("Livro devolvido com sucesso!");
 }

@@ -24,7 +24,6 @@ include '../actions/initDatabase.php';
       <button onclick="validLogin()">Entrar</button>
     </div>
   </div>
-
   <script src="../../scripts/script.js"></script>
 </body>
 

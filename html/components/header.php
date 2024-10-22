@@ -38,5 +38,6 @@
     </div>
 </header>
 <script src="../../scripts/header.js"></script>
+<script src="../../scripts/script.js"></script>
 
 </html>

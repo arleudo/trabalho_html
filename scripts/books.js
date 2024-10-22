@@ -81,6 +81,7 @@ async function saveBook() {
       books.push(book);
       // atualiza a tela com o livro novo criado
       updateTableBooks(books);
+      showToast("Livro criado com sucesso!!");
     }
   } else {
     book_.name = name.value;
@@ -93,6 +94,7 @@ async function saveBook() {
     if (resp) {
       // atualizando a tela com os dados alterados
       updateTableBooks(books);
+      showToast("Livro atualizado com sucesso!!");
     }
   }
 
@@ -177,6 +179,7 @@ async function deleteBook(id) {
   if (resp) {
     books = books.filter((book) => book.id != id);
     updateTableBooks(books);
+    showToast("Livro removido com sucesso!!");
   } else {
     console.log("Erro ao deletar livro");
   }

@@ -80,11 +80,14 @@ async function confirmRent() {
       console.log("erro");
     }
   }
-  console.log("Aluguel confirmado");
-  // apagando o local storage uma vez que o aluguel foi confirmado
-  localStorage.removeItem("bag");
-  // navegando pra tela principal
-  window.location.href = "main.php";
+  showToast("Aluguel confirmado");
+
+  setTimeout(() => {
+    // apagando o local storage uma vez que o aluguel foi confirmado
+    localStorage.removeItem("bag");
+    // navegando pra tela principal
+    window.location.href = "main.php";
+  }, 1500);
 }
 
 // função de acesso ao banco de dados

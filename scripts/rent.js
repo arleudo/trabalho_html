@@ -173,8 +173,6 @@ function showDetails(id) {
 
 // funçao que abre o dialog de detalhes do livro
 function openDialogDetails(id) {
-  console.log("Abrindo os detalhes do livro " + id);
-
   document.getElementById("dialog_details").style.display = "flex";
 }
 

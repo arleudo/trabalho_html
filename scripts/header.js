@@ -46,7 +46,7 @@ function addToBag(book_str) {
   const exists = bag.find((b) => b.id == book.id);
 
   if (exists) {
-    console.log("Livro ja esta na sacola!");
+    showToast("Livro já está na sacola");
   } else {
     bag.push(book);
     div_badge.style.visibility = "visible";
@@ -54,6 +54,7 @@ function addToBag(book_str) {
 
     // atualiza o local storage
     localStorage.setItem("bag", JSON.stringify(bag));
+    showToast("Livro adicionado a sacola");
   }
 }
 

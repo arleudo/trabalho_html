@@ -53,13 +53,36 @@ function validLogin() {
 
   // se encontrou um usuário ou se é admin, permite avançar no sistema
   if (found || isAdmin) {
-    const userData = found ? found : { name: "admin", email: emailField.value };
-    localStorage.setItem("user", JSON.stringify(userData));
-    window.location.href = "main.php";
+    showToast("Login realizado com sucesso!!");
+    setTimeout(() => {
+      const userData = found
+        ? found
+        : { name: "admin", email: emailField.value };
+      localStorage.setItem("user", JSON.stringify(userData));
+      window.location.href = "main.php";
+    }, 1000);
   } else {
     emailField.setCustomValidity(
       "Credenciais de login inválidas. Verifique o e-mail ou a senha."
     );
     emailField.reportValidity();
   }
+}
+
+function showToast(message) {
+  let toast = document.getElementById("toast");
+
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    toast.className = "toast";
+    document.body.appendChild(toast);
+  }
+
+  toast.textContent = message;
+  toast.classList.add("show");
+
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
 }

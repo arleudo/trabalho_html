@@ -16,11 +16,12 @@
     <div class="main-bag-container">
         <div class="bag-container" id="bag-container">
         </div>
-        <div class="bag-container-confirm">            
+        <div class="bag-container-confirm">
             <button onclick="confirmRent()">Confirmar</button>
         </div>
     </div>
     <script src="../../scripts/bag.js"></script>
+    <script src="../../scripts/script.js"></script>
 </body>
 
 </html>

@@ -87,6 +87,7 @@ async function saveUser() {
       // atualizando a tela com o novo usuario criado
       users.push(user);
       updateTable(users);
+      showToast("Usuário criado com sucesso!!");
     }
   } else {
     user_.name = name.value;
@@ -99,6 +100,7 @@ async function saveUser() {
     if (resp) {
       // atualizando a tela com o usuário alterado
       updateTable(users);
+      showToast("Usuário atualizado com sucesso!!");
     }
   }
 
@@ -150,6 +152,7 @@ async function loadUsers() {
       updateTable(users);
     })
     .catch((error) => {
+      showToast("Erro ao carregar os usuários");
       console.error("Erro ao carregar os usuários:", error);
     });
 }
@@ -188,6 +191,7 @@ async function deleteUser(id) {
     // atualizado a tela pra nao msotrar mais o usuario removido
     users = users.filter((user) => user.id != id);
     updateTable(users);
+    showToast("Usuário removido com sucesso!!");
   } else {
     console.log("Erro ao deletar usuário");
   }
