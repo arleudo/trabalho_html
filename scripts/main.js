@@ -10,17 +10,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let usuarios = document.getElementById("usuarios");
     let livros = document.getElementById("livros");
 
-    usuarios.style.pointerEvents = "none";
-    usuarios.style.opacity = "0.5";
-    livros.style.pointerEvents = "none";
-    livros.style.opacity = "0.5";
+    usuarios.style.display = "none";
+    livros.style.display = "none";
   } else {
     let alugar = document.getElementById("alugar");
     let devolver = document.getElementById("devolver");
 
-    alugar.style.pointerEvents = "none";
-    alugar.style.opacity = "0.5";
-    devolver.style.pointerEvents = "none";
-    devolver.style.opacity = "0.5";
+    alugar.style.display = "none";
+    devolver.style.display = "none";
   }
 });

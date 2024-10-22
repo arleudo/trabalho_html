@@ -24,18 +24,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let usuarios = document.getElementById("usuarios-header");
     let livros = document.getElementById("livros-header");
 
-    usuarios.style.pointerEvents = "none";
-    usuarios.style.opacity = "0.5";
-    livros.style.pointerEvents = "none";
-    livros.style.opacity = "0.5";
+    usuarios.style.display = "none";
+    livros.style.display = "none";
   } else {
     let alugar = document.getElementById("alugar-header");
     let devolver = document.getElementById("devolver-header");
 
-    alugar.style.pointerEvents = "none";
-    alugar.style.opacity = "0.5";
-    devolver.style.pointerEvents = "none";
-    devolver.style.opacity = "0.5";
+    alugar.style.display = "none";
+    devolver.style.display = "none";
   }
 });
 

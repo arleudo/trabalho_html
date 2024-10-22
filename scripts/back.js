@@ -4,6 +4,7 @@ let book_rented_user = [];
 let loggedUser = {};
 let id_ = 0;
 let comments = [];
+let rating = 0;
 
 // função que executa na inicialização da página
 document.addEventListener("DOMContentLoaded", async function () {
@@ -14,11 +15,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   let estrelas = document.querySelectorAll(".estrela");
-
-  // Adicionando o evento de click nas estrelas
   estrelas.forEach((estrela) => {
     estrela.addEventListener("click", () => {
-      let rating = parseInt(estrela.getAttribute("data-value")); // Conversão correta para número
+      rating = parseInt(estrela.getAttribute("data-value"));
       estrelas.forEach((item, index) => {
         item.innerHTML = index < rating ? "&#9733;" : "&#9734;";
       });
@@ -91,20 +90,28 @@ async function executePost(action, data) {
 }
 
 async function saveComment() {
-  closeDialog();
-
   const element = book_rented_user.find((b) => b.id == id_);
-  if (element) {
-  }
   //colocando o livro disponivel pra aluguel
   element.rent = true;
   await executePost("../actions/updateBook.php", element);
 
+  const feedbackInput = document.getElementById("FeedBackinput");
+  const feedback = {
+    id: comments.length + 1,
+    id_user: loggedUser.id,
+    id_book: element.id,
+    comment: feedbackInput.value,
+    stars: rating,
+  };
+
+  await executePost("../actions/saveComment.php", feedback);
   // colocando o aluguel com inativo, pra definir que ele ja foi devolvido
   const rent_to_update = rents_.find((rent) => rent.id_book == id_);
   rent_to_update.active = false;
   await executePost("../actions/updateRent.php", rent_to_update);
 
   book_rented_user = book_rented_user.filter((b) => b.id != id_);
+
+  closeDialog();
   updateBack();
 }
