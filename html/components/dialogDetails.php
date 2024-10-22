@@ -19,7 +19,9 @@
                 </div>
                 <div class="info">
                     <label for="sinopse_book">Sinopse:</label>
-                    <textarea id="sinopse_book" disabled></textarea>
+                    <textarea id="sinopse_book" disabled rows="13"></textarea>
+                </div>
+                <div class="recomendations" id="recomendations">
                 </div>
                 <div class="buttons_dialog">
                     <button type="button" onclick="closeDialogDetails()">Fechar</button>

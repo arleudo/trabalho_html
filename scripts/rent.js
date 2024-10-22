@@ -1,11 +1,14 @@
 let books = [];
 let searchRent = document.getElementById("searchRent");
 let rents = [];
+let recomendations = [];
+let loggedUser;
+let users = [];
 
 // função que carrega na inicialização da pagina
 document.addEventListener("DOMContentLoaded", function () {
   //pegando o usuário logado
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  loggedUser = JSON.parse(localStorage.getItem("user"));
 
   if (loggedUser.email == "admin@admin.com") {
     window.location.href = "main.php";
@@ -13,6 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // carregando os alugueis anteriores
   loadCards();
+  // carregando as recomendações
+  loadRecomendations();
+  // carregando os usuários
+  loadUsers();
 });
 
 // pegando o valor no campo de busca
@@ -94,9 +101,21 @@ function rentBook(event, id) {
   }
 }
 
+async function loadRecomendations() {
+  fetch("../actions/loadComments.php")
+    .then((response) => response.json())
+    .then((data) => {
+      recomendations = data;
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar os comentários:", error);
+    });
+}
+
 // abre o dialog de detalhes do livro selecionado
 function showDetails(id) {
   const book = books.find((b) => b.id == id);
+  const comments = recomendations.filter((comm) => comm.id_book == id);
 
   if (book) {
     const col_left = document.getElementById("col-left");
@@ -118,6 +137,35 @@ function showDetails(id) {
     theme_book.value = book.theme;
     let sinopse_book = document.getElementById("sinopse_book");
     sinopse_book.value = book.sinopse;
+
+    const recomendationsOfBook = document.getElementById("recomendations");
+
+    recomendationsOfBook.innerHTML = `
+  <h3>Avaliações de Usuários</h3>
+`;
+
+    comments.forEach((element) => {
+      let starsHTML = "";
+      const totalStars = 5;
+      const user = users.find((u) => u.id == element.id_user);
+
+      for (let i = 0; i < element.stars; i++) {
+        starsHTML += "&#9733;";
+      }
+
+      for (let i = element.stars; i < totalStars; i++) {
+        starsHTML += "&#9734;";
+      }
+
+      recomendationsOfBook.innerHTML += `
+    <div class="aval">
+      <h4>${user.name}</h4>
+      <div>
+        ${starsHTML} <!-- Aqui as estrelas são inseridas -->
+      </div>
+      <p>${element.comment}</p>
+    </div>`;
+    });
 
     openDialogDetails(id);
   }

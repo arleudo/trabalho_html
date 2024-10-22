@@ -53,6 +53,10 @@ function updateBack() {
       rentContainer.appendChild(card);
     }
   });
+
+  if (!book_rented_user.length) {
+    rentContainer.innerHTML = "<p>Nenhum livro para devolução!</p>";
+  }
 }
 
 async function loadBooks() {
@@ -104,7 +108,11 @@ async function saveComment() {
     stars: rating,
   };
 
-  await executePost("../actions/saveComment.php", feedback);
+  // somente salva o feedback se tiver pelo menos uma estrela selecionada ou algum comentário
+  if (rating > 0 || feedbackInput.value != "") {
+    await executePost("../actions/saveComment.php", feedback);
+  }
+
   // colocando o aluguel com inativo, pra definir que ele ja foi devolvido
   const rent_to_update = rents_.find((rent) => rent.id_book == id_);
   rent_to_update.active = false;
