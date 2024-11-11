@@ -235,8 +235,6 @@ button:hover {
 .toast {
   position: fixed;
   bottom: 2rem;
-  justify-content: center;
-  align-items: center;
   left: 1rem;
   height: 2rem;
   background-color: var(--button-background-color);
@@ -252,5 +250,4 @@ button:hover {
 .toast.show {
   display: block;
   opacity: 1;
-  bottom: 2rem;
 }

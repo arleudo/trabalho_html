@@ -124,7 +124,7 @@ function showDetails(id) {
     // colocando a imagem no lado esquerdo
     const img = document.createElement("img");
     img.setAttribute("src", book.url);
-    img.setAttribute("width", "400px");
+    img.setAttribute("width", "600px");
     img.setAttribute("heigth", "auto");
     col_left.appendChild(img);
 
